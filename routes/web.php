@@ -16,5 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $nome = 'jubileu';
     $idade = 22;
-    return view('welcome', ['nome' => $nome, "ano" => $idade]);
+    return view('products', ['nome' => $nome, "ano" => $idade]);
 });
