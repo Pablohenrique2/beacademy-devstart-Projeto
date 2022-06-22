@@ -29,12 +29,15 @@
             <a href="/produtos" class="nav-link">Produtos</a>
           </li>
           <li class="nav-item">
+            <a href="/produtos/criar" class="nav-link">criar Produtos</a>
+          </li>
+          <li class="nav-item">
             <a href="/contato" class="nav-link">contato</a>
           </li>
         </ul>
         <div class="d-flex">
           <form class="d-flex" role="search">
-            <input class="form-control me-2 w-200" type="search" placeholder="Buscar" aria-label="Search">
+            <input class="form-control me-2 w-200" type="search" name="search" placeholder="Buscar" aria-label="Search">
             <button class="botao" type="submit"><img src="/img/search.png" alt=""></button>
 
           </form>

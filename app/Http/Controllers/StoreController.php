@@ -17,4 +17,21 @@ class StoreController extends Controller
     {
         return view('products');
     }
+    public function create()
+    {
+        return view('products-store.create');
+    }
+    public function store(Request $request)
+    {
+        $products = new Product();
+        $products->name = $request->name;
+        $products->description = $request->description;
+        $products->price = $request->price;
+        $products->photo = $request->photo;
+        $products->category_id = $request->category_id;
+        $products->quantity = $request->quantity;
+
+        $products->save();
+        return redirect('/');
+    }
 }
