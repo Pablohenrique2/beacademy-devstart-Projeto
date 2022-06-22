@@ -13,6 +13,45 @@
 </head>
 
 <body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light " style="padding:30px">
+      <div class="collapse navbar-collapse d-flex justify-content-around" id="navbar">
+        <a href="/" class="navbar-brand">
+          <img class="logo" src="/img/logo.png" alt="">
+        </a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="/" class="nav-link">Home</a>
+
+          </li>
+          <li class="nav-item">
+            <a href="/produtos" class="nav-link">Produtos</a>
+          </li>
+          <li class="nav-item">
+            <a href="/contato" class="nav-link">contato</a>
+          </li>
+        </ul>
+        <div class="d-flex">
+          <form class="d-flex" role="search">
+            <input class="form-control me-2 w-200" type="search" placeholder="Buscar" aria-label="Search">
+            <button class="botao" type="submit"><img src="/img/search.png" alt=""></button>
+
+          </form>
+          <div class=" d-flex cart-nave">
+            <a href=""><img src="/img/bag-icon.webp" alt=""></a>
+            <div>
+              <a href="" class="text">
+                <h5>Minhas compras</h5>
+                <span>R$ 00,00</span>
+                <span>(Subtotal)</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
   @yield('content')
 
   <footer>

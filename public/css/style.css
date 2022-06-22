@@ -1,0 +1,43 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  text-decoration: none;
+}
+
+.nav-link{
+  font-size: 18px;
+  color: #111111;
+  font-weight: 600;
+}
+
+
+#navbar .botao{
+  border: none;
+  background-color: #ffffff;
+  
+}
+#navbar .botao img{
+  width: 20px;
+}
+.cart-nave{
+  width: 170.66px;
+  height: 33px; 
+  margin-left: 20px;
+}
+.cart-nave img{
+  width: 22px;
+  height: 27px;
+  margin-top: 5px;
+  margin-right: 5px;
+  
+ 
+}
+.cart-nave h5{
+  font-size: 12px;
+  margin-bottom: 0px;
+}
+.cart-nave span{
+  font-size: 11.2px;
+}
+
