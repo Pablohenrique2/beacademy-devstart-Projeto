@@ -15,7 +15,15 @@ class StoreController extends Controller
     }
     public function products()
     {
-        return view('products');
+        $search = request('search');
+        if ($search) {
+            $products = Product::where([
+                ['name', 'like', '%' . $search . '%']
+            ])->get();
+        } else {
+            $products = Product::all();
+        }
+        return view('products', ['products' => $products, 'search' => $search]);
     }
     public function create()
     {
@@ -33,5 +41,11 @@ class StoreController extends Controller
 
         $products->save();
         return redirect('/');
+    }
+    public function show($id)
+    {
+
+        $products = Product::findOrfail($id);
+        return view('products-store.show', ['products' => $products]);
     }
 }

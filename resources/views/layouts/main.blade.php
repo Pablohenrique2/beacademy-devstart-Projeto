@@ -36,7 +36,7 @@
           </li>
         </ul>
         <div class="d-flex">
-          <form class="d-flex" role="search">
+          <form action="/produtos" class="d-flex" role="search" method="GET">
             <input class="form-control me-2 w-200" type="search" name="search" placeholder="Buscar" aria-label="Search">
             <button class="botao" type="submit"><img src="/img/search.png" alt=""></button>
 
