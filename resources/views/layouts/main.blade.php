@@ -52,10 +52,10 @@
             </div>
 
             @auth
-            <form action="/admin" method="post">
+            <form action="/logout" method="post">
               @csrf
               <ul>
-                <li><a href="/admin" class="nav-link" onclick="event.preventDefault();
+                <li><a href="/logout" class="nav-link" onclick="event.preventDefault();
                    this.closest('form').submit();"> Sair</a></li>
               </ul>
             </form>
