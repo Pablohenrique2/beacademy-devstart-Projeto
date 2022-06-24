@@ -50,7 +50,27 @@
                 <span>(Subtotal)</span>
               </a>
             </div>
+
+            @auth
+            <form action="/admin" method="post">
+              @csrf
+              <ul>
+                <li><a href="/admin" class="nav-link" onclick="event.preventDefault();
+                   this.closest('form').submit();"> Sair</a></li>
+              </ul>
+            </form>
+            @endauth
+
+            @guest
+            <div>
+              <ul>
+                <li><a href="/admin">login</a></li>
+                <li><a href="/cadastro">cadastrar</a></li>
+              </ul>
+            </div>
+            @endguest
           </div>
+
         </div>
       </div>
     </nav>
