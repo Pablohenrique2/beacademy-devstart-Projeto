@@ -41,37 +41,59 @@
             <button class="botao" type="submit"><img src="/img/search.png" alt=""></button>
 
           </form>
-          <div class=" d-flex cart-nave">
-            <a href=""><img src="/img/bag-icon.webp" alt=""></a>
-            <div>
-              <a href="" class="text">
-                <h5>Minhas compras</h5>
-                <span>R$ 00,00</span>
-                <span>(Subtotal)</span>
+
+
+          <div>
+            <li class="nav-item dropdown">
+              <a class="nav-link " href="#" id="navbarDropdownMenuLink">
+                <div class=" d-flex cart-nave">
+                  <a href=""><img src="/img/bag-icon.webp" alt=""></a>
+                  <div>
+                    <a href="" class="text">
+                      <h5>Minhas compras</h5>
+                      <span>R$ 00,00</span>
+                      <span>(Subtotal)</span>
+                    </a>
+                  </div>
+
               </a>
-            </div>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="/login">entrar</a>
+                <a class="dropdown-item" href="/cadastro" target="_blank">cadastrar</a>
 
-            @auth
-            <form action="/logout" method="post">
-              @csrf
-              <ul>
-                <li><a href="/logout" class="nav-link" onclick="event.preventDefault();
-                   this.closest('form').submit();"> Sair</a></li>
-              </ul>
-            </form>
-            @endauth
-
-            @guest
-            <div>
-              <ul>
-                <li><a href="/admin">login</a></li>
-                <li><a href="/cadastro">cadastrar</a></li>
-              </ul>
-            </div>
-            @endguest
+              </div>
+            </li>
           </div>
 
+
+          @auth
+          <form action="/logout" method="post">
+            @csrf
+            <ul>
+              <li><a href="/logout" class="nav-link" onclick="event.preventDefault();
+                   this.closest('form').submit();"> Sair</a></li>
+            </ul>
+          </form>
+          @endauth
+
+          @guest
+          <div>
+            <li class="nav-item dropdown">
+              <a class="nav-link " href="#" id="navbarDropdownMenuLink">
+                <div style="background-color:black; border: radius 50px; width:50px; height: 50px;"></div>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="/admin">entrar</a>
+                <a class="dropdown-item" href="/cadastrar">cadastrar</a>
+              </div>
+            </li>
+          </div>
+
+
+          @endguest
         </div>
+
+      </div>
       </div>
     </nav>
   </header>
@@ -80,6 +102,8 @@
   <footer>
     <p>direitos reservados &copy; 2022</p>
   </footer>
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 
 </html>
