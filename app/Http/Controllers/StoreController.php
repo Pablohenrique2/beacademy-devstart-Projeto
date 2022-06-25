@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 
@@ -10,6 +11,7 @@ class StoreController extends Controller
 {
     public function index()
     {
+
         $products = Product::all();
         return view('home', ['products' => $products]);
     }
@@ -27,6 +29,7 @@ class StoreController extends Controller
     }
     public function create()
     {
+
         return view('products-store.create');
     }
     public function store(Request $request)

@@ -43,11 +43,29 @@
 .cart-nave span{
   font-size: 11.2px;
 }
+.group{
+	align-items: center;
+}
+.handbag div{
+	width: 150px;
+	margin-right: 10px;
+}
+.handbag li{
+	width: 100px;
+	margin-right: 10px;
+}
+.profile{
+	margin-left: 60px;
+	margin-top: 12px;
+}
+.profile div p{
+	font-size: 12px;
+}
 .dropdown:hover .dropdown-menu {
 	display: block;
 	position: absolute;
 	transform: translate3d(5px, 28px, 0px); /* distancia entre menu e btn */
-	top: 0px;
+	top: 10px;
 	left: 0px;
 	will-change: transform;
 }

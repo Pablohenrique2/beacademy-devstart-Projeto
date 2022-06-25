@@ -4,7 +4,7 @@
 <main>
 
   <section>
-    <img style="width:1350px ;" src="/img/banner.jpg" alt="">
+    <img style="width:1347px ;" src="/img/banner.jpg" alt="">
   </section>
 
   <section class="banner spad">

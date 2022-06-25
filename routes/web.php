@@ -5,8 +5,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [StoreController::class, 'index']);
 Route::get('/produtos', [StoreController::class, 'products']);
-Route::get('/produtos/criar', [StoreController::class, 'create']);
+Route::get('/produtos/criar', [StoreController::class, 'create'])->middleware('can:admin');
 Route::get('/produtos/{id}', [StoreController::class, 'show']);
+
+
 
 Route::post('/bdproduto', [StoreController::class, 'store']);
 Route::middleware([
@@ -15,6 +17,6 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return redirect('/');
     })->name('dashboard');
 });
