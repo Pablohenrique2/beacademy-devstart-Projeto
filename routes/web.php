@@ -3,14 +3,17 @@
 use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [StoreController::class, 'index']);
-Route::get('/produtos', [StoreController::class, 'products']);
-Route::get('/produtos/criar', [StoreController::class, 'create'])->middleware('can:admin');
-Route::get('/produtos/{id}', [StoreController::class, 'show']);
+Route::get('/', [StoreController::class, 'index'])->name('index');
+
+Route::prefix('produtos')->group(function () {
+    Route::get('', [StoreController::class, 'products'])->name('produtos');
+    Route::get('/criar', [StoreController::class, 'create'])->middleware('can:admin')->name('produtos.criar');
+    Route::get('/{id}', [StoreController::class, 'show'])->name('produtos.id');
+});
 
 
+Route::post('/bdproduto', [StoreController::class, 'store'])->name('bdproduto');
 
-Route::post('/bdproduto', [StoreController::class, 'store']);
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
