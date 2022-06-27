@@ -3,7 +3,6 @@
 namespace App\Models;
 
 
-
-class Product extends RModel
+class Address extends RModel
 {
 }
