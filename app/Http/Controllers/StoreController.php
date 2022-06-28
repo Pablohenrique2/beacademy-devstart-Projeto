@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -9,14 +10,16 @@ use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $data = [];
 
         $products = Product::all();
-        return view('home', ['products' => $products]);
+        return view('home', ['products' => $products], $data);
     }
-    public function products()
+    public function products(Request $request)
     {
+        $data = [];
         $search = request('search');
         if ($search) {
             $products = Product::where([
@@ -27,8 +30,9 @@ class StoreController extends Controller
         }
         return view('products', ['products' => $products, 'search' => $search]);
     }
-    public function create()
+    public function create(Request $request)
     {
+        $data = [];
 
         return view('products-store.create');
     }
@@ -50,5 +54,15 @@ class StoreController extends Controller
 
         $products = Product::findOrfail($id);
         return view('products-store.show', ['products' => $products]);
+    }
+
+    public function category(Request $request)
+    {
+        $data = [];
+        $categorys = Category::all();
+        $products = Product::limit(4)->get();
+        $data['listaprodutos'] = $products;
+        $data['listacategorias'] = $categorys;
+        return view('products-store.categoria', $data);
     }
 }

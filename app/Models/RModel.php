@@ -9,7 +9,7 @@ class RModel extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id';
-    public $timespatams = true;
+    public $timestamps = true;
     public $incremeting = true;
     protected $fillable = [];
     public function beforeSave()
