@@ -1,0 +1,56 @@
+.shop-title{
+  background-color:#f3f2ee ;
+  padding: 40px 0px;
+  
+}
+.shop-title h4{
+  margin-left: 100px;
+  margin-bottom: 8px;
+}
+.shop-title a{
+  margin-left: 105px;
+  text-decoration: none;
+  margin-right: 5px;
+  color: black;
+}
+.disclosure-cat{
+  border: none;
+  font-size: 16px; 
+
+  color:#111111;
+  background-color: #ffffff;
+}
+.shop-title .detalhe{
+  margin-left: 5px;
+  color:#b7b7b7; 
+}
+.shop-disclosure{
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.shop-disclosure-1{
+  width:262px ;
+  margin-left: 100px;
+  margin-right: 20px;
+}
+.disclosure{
+  margin-left: 30px;
+  margin-top: 30px;
+}
+.disclosure h6{
+  padding: 25px 0px 0px 0px;
+font-size: 15px;
+}
+.disclosure h5{
+  padding: 24px 0px 0px 0px;
+font-size: 18px;
+}
+.disclosure a{
+ margin-top: 15px;
+}
+.disclosure img{
+  width: 260px;
+  height: 262px;
+}
+
+

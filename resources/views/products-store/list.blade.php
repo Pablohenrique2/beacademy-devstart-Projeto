@@ -4,6 +4,8 @@
 
 <div class="col-md-10 offset-md-1 dashboard-title-container">
   <h1>meus produtos</h1>
+  <a href="/produtos/criar" class="btn btn btn-outline-primary">Adicionar produtos</a>
+
 
 </div>
 <div class="col-md-10 offset-md-1 dashboard-product-container">
@@ -26,10 +28,10 @@
         <th scope="row">{{$product->id}}</th>
         <td>{{$product->name}}</td>
         <td>{{$product->description}}</td>
-        <td>{{$product->price}}</td>
+        <td>R${{number_format($product->price, 2, ',', '.' )}}</td>
         <td>{{$product->quantity}}</td>
         <td><img src="{{$product->photo}}" alt="" style="width: 50px;"></td>
-        <td><a href="" class="btn btn-info edit-btn">Editar</a>
+        <td><a href="/produtos/editar/{{$product->id}}" class="btn btn-info edit-btn">Editar</a>
           <form action="/produtos/{{$product->id}}" method="post">
             @csrf
             @method('delete')

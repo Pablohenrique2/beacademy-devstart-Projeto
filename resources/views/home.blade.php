@@ -16,8 +16,8 @@
               <img src="/img/banner-1.jpg" alt="">
             </div>
             <div class="banner__item__text">
-              <h2>Clothing Collections 2030</h2>
-              <a href="#">Shop now</a>
+              <h2>Coleções de roupas 2022</h2>
+              <a href="#">Compre agora</a>
             </div>
           </div>
         </div>
@@ -27,8 +27,8 @@
               <img src="/img/banner-2.jpg" alt="">
             </div>
             <div class="banner__item__text">
-              <h2>Accessories</h2>
-              <a href="#">Shop now</a>
+              <h2>Acessorios</h2>
+              <a href="#">Compre agora</a>
             </div>
           </div>
         </div>
@@ -38,8 +38,8 @@
               <img src="/img/banner-3.jpg" alt="">
             </div>
             <div class="banner__item__text">
-              <h2>Shoes Spring 2030</h2>
-              <a href="#">Shop now</a>
+              <h2>Sapatos Primavera 2022</h2>
+              <a href="#">Compre agora</a>
             </div>
           </div>
         </div>

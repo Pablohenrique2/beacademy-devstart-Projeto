@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use function GuzzleHttp\Promise\all;
 
 class StoreController extends Controller
 {
@@ -61,15 +62,25 @@ class StoreController extends Controller
         Product::findOrfail($id)->delete();
         return redirect('/produtos/list');
     }
+    public function edit($id)
+    {
+        $products = Product::findOrfail($id);
+        return view('products-store.edit', ['products' => $products]);
+    }
     public function show($id)
     {
 
         $products = Product::findOrfail($id);
         return view('products-store.show', ['products' => $products]);
     }
+    public function update(Request $request)
+    {
+        Product::findOrfail($request->id)->update($request->all());
+        return redirect('/produtos/list');
+    }
 
 
-    public function category(Request $request)
+    public function category()
     {
         $data = [];
         $categories = Category::all();

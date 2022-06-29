@@ -3,6 +3,7 @@
 @section('content')
 
 <h1>criar</h1>
+<a href="/produtos/list" class="btn btn-info">Ver lista de produtos</a>
 
 <form action="/bdproduto" method="Post">
   @csrf
