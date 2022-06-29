@@ -47,7 +47,19 @@ class StoreController extends Controller
         $products->quantity = $request->quantity;
 
         $products->save();
-        return redirect('/');
+        return redirect('/produtos/list');
+    }
+    public function list(Request $request)
+    {
+        $data = [];
+        $products = Product::all();
+
+        return  view('products-store.list', ['products' => $products], $data);
+    }
+    public function destroy($id)
+    {
+        Product::findOrfail($id)->delete();
+        return redirect('/produtos/list');
     }
     public function show($id)
     {
@@ -55,6 +67,7 @@ class StoreController extends Controller
         $products = Product::findOrfail($id);
         return view('products-store.show', ['products' => $products]);
     }
+
 
     public function category(Request $request)
     {
