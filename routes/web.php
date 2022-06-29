@@ -13,7 +13,7 @@ Route::prefix('produtos')->group(function () {
 });
 
 Route::match(['get', 'post'], '/categoria', [StoreController::class, 'category'])->name('categoria');
-Route::match(['get', 'post'], '/cadastrar', [ClienteController::class, 'cadastrar'])->name('cadastrar');
+Route::match(['get', 'post'], '/cadastrei', [ClienteController::class, 'cadastrar'])->name('cadastrar');
 
 Route::post('/bdproduto', [StoreController::class, 'store'])->name('bdproduto');
 

@@ -28,7 +28,7 @@ class StoreController extends Controller
         } else {
             $products = Product::all();
         }
-        return view('products', ['products' => $products, 'search' => $search]);
+        return view('products-store.products', ['products' => $products, 'search' => $search]);
     }
     public function create(Request $request)
     {
@@ -59,10 +59,10 @@ class StoreController extends Controller
     public function category(Request $request)
     {
         $data = [];
-        $categorys = Category::all();
-        $products = Product::limit(4)->get();
-        $data['listaprodutos'] = $products;
-        $data['listacategorias'] = $categorys;
-        return view('products-store.categoria', $data);
+        $categories = Category::all();
+        $product = Product::limit(4)->get();
+        $data['listproducts'] = $product;
+        $data['listcategories'] = $categories;
+        return view('categories.categories', $data);
     }
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->decimal('price', 10, 2)->nullable();
+            $table->decimal('price', 10, 2);
             $table->string('photo');
             $table->integer('category_id')->unsigned();
             $table->integer('quantity');
