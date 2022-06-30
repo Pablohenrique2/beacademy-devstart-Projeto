@@ -12,4 +12,12 @@
 </ul>
 @endif
 
+@if(isset($listproducts) && count($listproducts)>0 )
+<ul>
+  @foreach($listproducts as $id => $product)
+  <li>{{$product->name}}</li>
+  @endforeach
+</ul>
+@endif
+
 @endsection

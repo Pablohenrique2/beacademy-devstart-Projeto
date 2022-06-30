@@ -1,4 +1,5 @@
 @import url('shop.css');
+@import url('home.css');
 
 *{
   margin: 0px;
@@ -52,6 +53,11 @@
 	width: 150px;
 	margin-right: 10px;
 }
+.handbag .text {
+  text-decoration:none ; 
+  color:#424242;
+
+}
 .handbag li{
 	width: 100px;
 	margin-right: 10px;
@@ -75,89 +81,13 @@
 	display: inline-block; /* deixa o LO do "tamanho do próprio texto" e não da largura inteira da tela*/
 	list-style: none; /* rita a "bolinha" do LI*/
 }
-
 /*---------------------
-  Banner
+  footer
 -----------------------*/
-.spad{
-  margin-top: 100px;
-  margin-bottom: 100px;
-}
-.blog {
-	padding-bottom: 55px;
-}
 
-.banner__item {
-	position: relative;
-	overflow: hidden;
+footer{
+  background-color: #111111;
 }
-
-.banner__item:hover .banner__item__text a:after {
-	width: 40px;
-	background: #e53637;
+footer p{
+ color:#b7b7b7 ; 
 }
-
-.banner__item.banner__item--middle {
-	margin-top: -75px;
-}
-
-.banner__item.banner__item--middle .banner__item__pic {
-	float: none;
-}
-
-.banner__item.banner__item--middle .banner__item__text {
-	position: relative;
-	top: 0;
-	left: 0;
-	max-width: 100%;
-	padding-top: 22px;
-}
-
-.banner__item.banner__item--last {
-	margin-top: 100px;
-}
-
-.banner__item__pic {
-	float: right;
-}
-
-.banner__item__text {
-	max-width: 300px;
-	position: absolute;
-	left: 0;
-	top: 140px;
-}
-
-.banner__item__text h2 {
-	color: #111111;
-	font-weight: 700;
-	line-height: 46px;
-	margin-bottom: 10px;
-}
-
-.banner__item__text a {
-	display: inline-block;
-	color: #111111;
-	font-size: 13px;
-	font-weight: 700;
-	letter-spacing: 4px;
-  text-decoration: none;
-	text-transform: uppercase;
-	padding: 3px 0;
-	position: relative;
-}
-
-.banner__item__text a:after {
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	height: 2px;
-	background: #111111;
-	content: "";
-	-webkit-transition: all, 0.3s;
-	-o-transition: all, 0.3s;
-	transition: all, 0.3s;
-}
-
-

@@ -14,8 +14,11 @@ class StoreController extends Controller
     public function index(Request $request)
     {
         $data = [];
+        $cart = session('cart', []);
+        $data = ['cart' => $cart];
 
-        $products = Product::all();
+
+        $products = Product::limit(8)->get();
         return view('home', ['products' => $products], $data);
     }
     public function products(Request $request)
@@ -80,11 +83,16 @@ class StoreController extends Controller
     }
 
 
-    public function category()
+    public function category($idcategory = null)
     {
         $data = [];
         $categories = Category::all();
-        $product = Product::limit(4)->get();
+        $queryproduct = Product::limit(4);
+        if ($idcategory != 0) {
+            $queryproduct->where("category_id", $idcategory);
+        }
+
+        $product = $queryproduct->get();
         $data['listproducts'] = $product;
         $data['listcategories'] = $categories;
         return view('categories.categories', $data);

@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- CSS BOOTSTRAP -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
   <!-- CSS DA APLICAÇÃO -->
   <link rel="stylesheet" href="{{asset('/css/style.css')}}">
   <title>@yield('title')</title>
@@ -54,7 +55,7 @@
                 <div class=" d-flex cart-nave">
                   <a href=""><img src="/img/bag-icon.webp" alt=""></a>
                   <div>
-                    <a href="" class="text">
+                    <a href="{{route('viewcart')}}" class="text">
                       <h5>Minhas compras</h5>
                       <span>R$ 00,00</span>
                       <span>(Subtotal)</span>
@@ -62,9 +63,19 @@
                   </div>
 
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="/login">entrar</a>
-                <a class="dropdown-item" href="/cadastro" target="_blank">cadastrar</a>
+              <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink" style="width:200px ;">
+                @if(isset($cart)&& count($cart)>0)
+                @foreach($cart as $product)
+                <tr>
+                  <td>{{$product->name}}</td>
+                  <td>R${{number_format($product->price, 2, ',', '.' )}}</td>
+                  <td><img src="{{$product->photo}}" alt="" style="width: 50px;"></td>
+                  </td>
+                </tr>
+                @endforeach
+                @else
+                <p>Nenhum item no carrinho</p>
+                @endif
 
               </div>
             </li>
@@ -128,8 +139,9 @@
   </header>
   @yield('content')
 
-  <footer>
-    <p>direitos reservados &copy; 2022</p>
+  <footer class="text-center">
+
+    <p> Copyright &copy 2022 Todos os direitos reservados</p>
   </footer>
   <!-- JavaScript Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

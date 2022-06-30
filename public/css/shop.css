@@ -1,3 +1,6 @@
+/*---------------------
+  shop
+-----------------------*/
 .shop-title{
   background-color:#f3f2ee ;
   padding: 40px 0px;
@@ -20,6 +23,7 @@
   color:#111111;
   background-color: #ffffff;
 }
+
 .shop-title .detalhe{
   margin-left: 5px;
   color:#b7b7b7; 
@@ -33,6 +37,10 @@
   margin-left: 100px;
   margin-right: 20px;
 }
+
+/*---------------------
+  disclosure
+-----------------------*/
 .disclosure{
   margin-left: 30px;
   margin-top: 30px;
