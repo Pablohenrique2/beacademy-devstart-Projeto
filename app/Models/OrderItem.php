@@ -4,6 +4,6 @@ namespace App\Models;
 
 
 
-class OrderedItems extends RModel
+class OrderItem extends RModel
 {
 }

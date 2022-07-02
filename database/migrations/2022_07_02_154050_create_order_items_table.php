@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ordered_items', function (Blueprint $table) {
+        Schema::create('order_items', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('quantity');
             $table->decimal('value', 10, 2);
+            $table->string('status', 4);
             $table->datetime('dt_item');
             $table->integer('product_id')->unsigned();
             $table->integer('request_id')->unsigned();
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ordered_items');
+        Schema::dropIfExists('order_items');
     }
 };

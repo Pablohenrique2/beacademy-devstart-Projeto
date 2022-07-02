@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +20,9 @@ Route::prefix('produtos')->group(function () {
 Route::match(['get', 'post'], '/categoria', [StoreController::class, 'category'])->name('categoria');
 Route::match(['get', 'post'], '/{idcategory?}/categoria', [StoreController::class, 'category'])->name('categoria_por_id');
 
-Route::match(['get', 'post'], '/{idproduct}/carrinho/adicionar', [ProductController::class, 'addcart'])->name('addcart');
-Route::match(['get', 'post'], '/carrinho', [ProductController::class, 'viewCart'])->name('viewcart');
-Route::match(['get', 'post'], '/{indice}/excluircarrinho', [ProductController::class, 'deleteCart'])->name('cart_delete');
+Route::match(['get', 'post'], '/{idproduct}/carrinho/adicionar', [CartController::class, 'addcart'])->name('addcart');
+Route::match(['get', 'post'], '/carrinho', [CartController::class, 'viewCart'])->name('viewcart');
+Route::match(['get', 'post'], '/{indice}/excluircarrinho', [CartController::class, 'deleteCart'])->name('cart_delete');
 
 
 
