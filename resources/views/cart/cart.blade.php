@@ -43,16 +43,39 @@
           </td>
           <td class="center-align">
             <div class="center-align">
-              <a class="col l4 m4 s4" href="">
-                <i class="material-icons small">remove_cicle_outline</i>
-              </a>
+              <form id="form-delete-product" method="POST" action="{{route('cartdelete')}}">
+                {{csrf_field()}}
+                @method('DELETE')
+
+                <input type="hidden" name='request_id' value="{{$orders->id}}">
+                <input type="hidden" name='product_id' value="{{$order_item->product_id}}">
+                <input type="hidden" name="item" value="1">
+                <button type="submit">remove_cicle_outline</button>
+
+              </form>
+
               <span class="col l4 m4 s4">{{$order_item->qtd}}</span>
-              <a class="col l4 m4 s4" href="">
-                <i class="material-icons small">add_cicle_outline</i>
+              <form id="form-add-product" method="post" action="{{route('addcart')}}">
+                {{csrf_field()}}
+                <input type="hidden" name="id" value="{{$order_item->product_id}}">
+                <button type="submit">adicionar</button>
+              </form>
+
+              <i class="material-icons small">add_cicle_outline</i>
               </a>
 
             </div>
-            <a href="" class="tooltipped" data-position="right" data-play="50" data-tooltip="Retirar produto do carrinho?">Retirar produto</a>
+            <form id="form-delete-product" method="POST" action="{{route('cartdelete')}}">
+              {{csrf_field()}}
+              @method('DELETE')
+
+              <input type="hidden" name='request_id' value="{{$orders->id}}">
+              <input type="hidden" name='product_id' value="{{$order_item->product_id}}">
+              <input type="hidden" name="item" value="0">
+              <button type="submit">Retirar produto</button>
+
+            </form>
+
 
           </td>
           <td>
@@ -74,7 +97,7 @@
       <span>R$ {{number_format($total_pedido,2,',','.')}}</span>
     </div>
     <div class="row">
-      <a class="btn-large tooltipped col offset-l8 offset-m18 offset-s18 l4 m4 s4 " data-position="top" data-delay="50" data-tooltip="voltar a pagina inicial para continuar comprando?" href="">Continuar comprando</a>
+      <a class="btn-large tooltipped col offset-l8 offset-m18 offset-s18 l4 m4 s4 " data-position="top" data-delay="50" data-tooltip="voltar a pagina inicial para continuar comprando?" href="{{route('home')}}">Continuar comprando</a>
 
     </div>
     @empty
@@ -82,5 +105,7 @@
     @endforelse
   </div>
 </div>
+
+
 
 @endsection

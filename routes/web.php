@@ -20,9 +20,12 @@ Route::prefix('produtos')->group(function () {
 Route::match(['get', 'post'], '/categoria', [StoreController::class, 'category'])->name('categoria');
 Route::match(['get', 'post'], '/{idcategory?}/categoria', [StoreController::class, 'category'])->name('categoria_por_id');
 
+
 Route::match(['get', 'post'], '/carrinho/adicionar', [CartController::class, 'addcart'])->name('addcart');
 Route::match(['get', 'post'], '/carrinho', [CartController::class, 'viewCart'])->name('viewcart');
-Route::match(['get', 'post'], '/excluircarrinho', [CartController::class, 'deleteCart'])->name('cart_delete');
+Route::delete('/carrinho/delete', [CartController::class, 'deleteCart'])->name('cartdelete');
+Route::match(['get', 'post'], '/carrinho/concluir', [CartController::class, 'concludeCart'])->name('concludeCart');
+Route::match(['get', 'post'], '/carrinho/compras', [CartController::class, 'shoppingCart'])->name('shoppingCart');
 
 
 

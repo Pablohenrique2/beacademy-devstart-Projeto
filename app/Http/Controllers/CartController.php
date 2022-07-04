@@ -63,14 +63,55 @@ class CartController extends Controller
 
         return view('cart.cart', compact('order'));
     }
-    public function deleteCart($indice)
+    public function deleteCart()
     {
         $this->middleware('VerifyCsrfToken');
+
         $req = Request();
-        $idorder = $req->input('request_id');
-        $idproduct  = $req->input('product_id');
-        $delete_one_item =(bollean)$req->input('item');
-        $iduser = Auth::id();
-        $idpedido =
+        $idorder           = $req->input('request_id');
+        $idproduct          = $req->input('product_id');
+        $delete_one_item = (bool)$req->input('item');
+        $iduser          = Auth::id();
+
+        $idorder = ModelsRequest::consultaId([
+            'id'      => $idorder,
+            'user_id' => $iduser,
+            'status'  => 'RE' // Reservada
+        ]);
+
+        if (empty($idorder)) {
+            $req->session()->flash('mensagem-falha', 'Pedido não encontrado!');
+            return redirect()->route('carrinho.index');
+        }
+
+        $where_product = [
+            'request_id'  => $idorder,
+            'product_id' => $idproduct
+        ];
+
+        $product = OrderItem::where($where_product)->orderBy('id', 'desc')->first();
+        if (empty($product->id)) {
+            $req->session()->flash('mensagem-falha', 'Produto não encontrado no carrinho!');
+            return redirect()->route('carrinho.index');
+        }
+
+        if ($delete_one_item) {
+            $where_product['id'] = $product->id;
+        }
+        OrderItem::where($where_product)->delete();
+
+        $check_order = OrderItem::where([
+            'request_id' => $product->request_id
+        ])->exists();
+
+        if (!$check_order) {
+            ModelsRequest::where([
+                'id' => $product->request_id
+            ])->delete();
+        }
+
+        $req->session()->flash('mensagem-sucesso', 'Produto removido do carrinho com sucesso!');
+
+        return redirect()->route('viewcart');
     }
 }
