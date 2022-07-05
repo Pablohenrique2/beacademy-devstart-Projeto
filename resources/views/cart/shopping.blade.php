@@ -1,22 +1,27 @@
 @extends('layouts.novo')
 @section('title','shopping')
 @section('conteudo')
-
+<div class="shop-title">
+  <h4>Minhas compras</h4>
+  <div class="shop-subtitle">
+    <a href="/">Home</a><span>></span><span class="detalhe">Minhas compras</span>
+  </div>
+</div>
 <div class="container">
   <div class="row">
-    <h3>Minhas compras</h3>
+
     @if (Session::has('mensagem-sucesso'))
-    <div class="card-panel green">{{ Session::get('mensagem-sucesso') }}</div>
+    <div>{{ Session::get('mensagem-sucesso') }}</div>
     @endif
     @if (Session::has('mensagem-falha'))
-    <div class="card-panel red">{{ Session::get('mensagem-falha') }}</div>
+    <div>{{ Session::get('mensagem-falha') }}</div>
     @endif
-    <div class="divider"></div>
-    <div class="row col s12 m12 l12">
+    <div></div>
+    <div>
       <h4>Compras concluídas</h4>
       @forelse ($shoppin as $order)
-      <h5 class="col l6 s12 m6"> Pedido: {{ $order->id }} </h5>
-      <h5 class="col l6 s12 m6"> Criado em: {{ $order->created_at->format('d/m/Y H:i') }} </h5>
+      <h5> Pedido: {{ $order->id }} </h5>
+      <h5> Criado em: {{ $order->created_at->format('d/m/Y H:i') }} </h5>
       <form method="POST" action="{{ route('cancelCart') }}">
         {{ csrf_field() }}
         <input type="hidden" name="request_id" value="{{ $order->id }}">
@@ -47,7 +52,7 @@
                   <label for="item-{{ $order_product->id }}">Selecionar</label>
                 </p>
                 @else
-                <strong class="red-text">CANCELADO</strong>
+                <strong>CANCELADO</strong>
                 @endif
               </td>
               <td>
@@ -68,7 +73,7 @@
             </tr>
             <tr>
               <td colspan="2">
-                <button type="submit" class="btn-large red col l12 s12 m12 tooltipped" data-position="bottom" data-delay="50" data-tooltip="Cancelar itens selecionados">
+                <button type="submit">
                   Cancelar
                 </button>
               </td>
@@ -87,43 +92,47 @@
       </h5>
       @endforelse
     </div>
-    <div class="row col s12 m12 l12">
+    <div class="row ">
       <div class="divider"></div>
       <h4>Compras canceladas</h4>
       @forelse ($canceled as $order)
-      <h5 class="col l2 s12 m2"> Pedido: {{ $order->id }} </h5>
-      <h5 class="col l5 s12 m5"> Criado em: {{ $order->created_at->format('d/m/Y H:i') }} </h5>
-      <h5 class="col l5 s12 m5"> Cancelado em: {{ $order->updated_at->format('d/m/Y H:i') }} </h5>
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Produto</th>
-            <th>Valor</th>
-            <th>Desconto</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          @php
-          $total_order = 0;
-          @endphp
-          @foreach ($order->order_product_items as $order_product)
-          @php
-          $total_product = $order_product->value;
-          $total_order += $total_product;
-          @endphp
-          <tr>
-            <td>
-              <img width="100" height="100" src="{{ $order_product->product->imagem }}">
-            </td>
-            <td>{{ $order_product->product->name}}</td>
-            <td>R$ {{ number_format($order_product->value, 2, ',', '.') }}</td>
+      <div style="margin-top:20px ;">
+        <div>
+          <h5 class="col l2 s12 m2"> Pedido: {{ $order->id }} </h5>
+          <h5 class="col l5 s12 m5"> Criado em: {{ $order->created_at->format('d/m/Y H:i') }} </h5>
+          <h5 class="col l5 s12 m5"> Cancelado em: {{ $order->updated_at->format('d/m/Y H:i') }} </h5>
+        </div>
+        <div class="shopping-cart">
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Produto</th>
+                <th>Valor</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              @php
+              $total_order = 0;
+              @endphp
+              @foreach ($order->order_product_items as $order_product)
+              @php
+              $total_product = $order_product->value;
+              $total_order += $total_product;
+              @endphp
+              <tr>
+                <td>
+                  <img width="100" height="100" src="{{ $order_product->product->imagem }}">
+                </td>
+                <td>{{ $order_product->product->name}}</td>
+                <td>R$ {{ number_format($order_product->value, 2, ',', '.') }}</td>
 
 
-            <td>R$ {{ number_format($total_product, 2, ',', '.') }}</td>
-          </tr>
-          @endforeach
+                <td>R$ {{ number_format($total_product, 2, ',', '.') }}</td>
+              </tr>
+        </div>
+        @endforeach
         </tbody>
         <tfoot>
           <tr>
@@ -132,7 +141,8 @@
             <td>R$ {{ number_format($total_order, 2, ',', '.') }}</td>
           </tr>
         </tfoot>
-      </table>
+        </table>
+      </div>
       @empty
       <h5 class="center">Nenhuma compra ainda foi cancelada.</h5>
       @endforelse

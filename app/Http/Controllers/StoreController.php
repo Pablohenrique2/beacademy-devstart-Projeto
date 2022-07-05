@@ -14,6 +14,7 @@ class StoreController extends Controller
 {
     public function index()
     {
+        $products = Product::limit(8)->get();
         $order = ModelsRequest::where(
             [
                 'status' => 'RE',
@@ -22,7 +23,7 @@ class StoreController extends Controller
         )->get();
 
 
-        $products = Product::limit(8)->get();
+
         return view('home', ['products' => $products], compact('order'));
     }
     public function products(Request $request)
@@ -80,10 +81,17 @@ class StoreController extends Controller
         return view('products-store.edit', ['products' => $products]);
     }
     public function show($id)
+
     {
+        $order = ModelsRequest::where(
+            [
+                'status' => 'RE',
+                'user_id' => auth()->id()
+            ]
+        )->get();
 
         $products = Product::findOrfail($id);
-        return view('products-store.show', ['products' => $products]);
+        return view('products-store.show', ['products' => $products], compact('order'));
     }
     public function update(Request $request)
     {

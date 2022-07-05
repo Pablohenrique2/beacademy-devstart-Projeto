@@ -11,7 +11,7 @@ Route::prefix('produtos')->group(function () {
     Route::match(['get', 'post'], '', [StoreController::class, 'products'])->name('produtos');
     Route::match(['get', 'post'], '/criar', [StoreController::class, 'create'])->middleware('can:admin')->name('produtos-criar');
     Route::match(['get', 'post'], '/list', [StoreController::class, 'list'])->middleware('can:admin')->name('produtos-list');
-    Route::match(['get', 'post'], '/{id}', [StoreController::class, 'show'])->name('produtos-id');
+    Route::match(['get', 'post'], '/{id}', [StoreController::class, 'show'])->name('produtos.id');
     Route::match(['get', 'post'], '/editar/{id}', [StoreController::class, 'edit'])->name('produtos-edit');
     Route::delete('/{id}', [StoreController::class, 'destroy'])->middleware('can:admin')->name('produtos-delete-id');
     Route::put('/update/{id}', [StoreController::class, 'update'])->middleware('can:admin')->name('produtos-update');

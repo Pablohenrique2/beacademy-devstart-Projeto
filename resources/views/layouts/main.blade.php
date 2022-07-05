@@ -59,40 +59,44 @@
                   <div>
                     <a href="{{route('viewcart')}}" class="text">
                       <h5>Minhas compras</h5>
-                      <span>R$ 00,00</span>
+                      <span></span>
                       <span>(Subtotal)</span>
                     </a>
                   </div>
 
               </a>
-              <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink" style="width:200px ;">
+              <div class="dropdown-menu " style="width:225px ; " aria-labelledby="navbarDropdownMenuLink">
+                <div class="d-flex">
+                  <div>
+                    @forelse($order as $orders)
 
-                @forelse($order as $orders)
+                    @foreach($orders->order_items as $order_item)
+                    <div class=" d-flex" style="margin-left:20px ;">
+                      <div>
+                        <tr>
+                          <td>
+                            <div><img src="{{$order_item->product->photo}}" alt="" style="width: 50px;">{{$order_item->product->name}}</div>
+                            <h5>QTD:{{$order_item->qtd}}</h5>R${{number_format($order_item->product->price, 2, ',', '.' )}}
+                          </td>
 
-                @foreach($orders->order_items as $order_item)
+                          <td></td>
 
-                <tr>
-                  <td>{{$order_item->product->name}}</td>
-                  <td>R${{number_format($order_item->product->price, 2, ',', '.' )}}</td>
-                  <td><img src="{{$order_item->product->photo}}" alt="" style="width: 50px;"></td>
-                  </td>
-                </tr>
+                          </td>
 
-                @endforeach
-                <form id="form-delete-product" method="POST" action="{{route('cartdelete')}}">
-                  {{csrf_field()}}
-                  @method('DELETE')
+                        </tr>
+                      </div>
+                      <div>
 
-                  <input type="hidden" name='request_id' value="{{$orders->id}}">
-                  <input type="hidden" name='product_id' value="{{$order_item->product_id}}">
-                  <input type="hidden" name="item" value="0">
-                  <button type="submit">Retirar produto</button>
+                      </div>
+                    </div>
 
-                </form>
-                @empty
-                <h5>Não a produto no carrinho...</h5>
-                @endforelse
+                    @endforeach
+                  </div>
 
+                  @empty
+                  <h5>Não a produto no carrinho...</h5>
+                  @endforelse
+                </div>
 
 
 

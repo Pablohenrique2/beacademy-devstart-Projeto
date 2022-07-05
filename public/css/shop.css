@@ -11,10 +11,12 @@
   margin-bottom: 8px;
 }
 .shop-title a{
-  margin-left: 105px;
   text-decoration: none;
   margin-right: 5px;
   color: black;
+}
+.shop-subtitle{
+  margin-left: 100px;
 }
 .disclosure-cat{
   border: none;

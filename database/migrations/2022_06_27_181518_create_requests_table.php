@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('orderdata');
             $table->string('status', 4);
             $table->integer('user_id')->unsigned();
             $table->timestamps();
