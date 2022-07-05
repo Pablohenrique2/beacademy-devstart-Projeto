@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Request as ModelsRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -11,19 +12,27 @@ use function GuzzleHttp\Promise\all;
 
 class StoreController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $data = [];
-        $cart = session('cart', []);
-        $data = ['cart' => $cart];
+        $order = ModelsRequest::where(
+            [
+                'status' => 'RE',
+                'user_id' => auth()->id()
+            ]
+        )->get();
 
 
         $products = Product::limit(8)->get();
-        return view('home', ['products' => $products], $data);
+        return view('home', ['products' => $products], compact('order'));
     }
     public function products(Request $request)
     {
-        $data = [];
+        $order = ModelsRequest::where(
+            [
+                'status' => 'RE',
+                'user_id' => auth()->id()
+            ]
+        )->get();
         $search = request('search');
         if ($search) {
             $products = Product::where([
@@ -32,7 +41,7 @@ class StoreController extends Controller
         } else {
             $products = Product::all();
         }
-        return view('products-store.products', ['products' => $products, 'search' => $search]);
+        return view('products-store.products', ['products' => $products, 'search' => $search], compact('order'));
     }
     public function create(Request $request)
     {

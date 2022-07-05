@@ -3,6 +3,8 @@
 @section('content')
 <main>
 
+
+
   <section>
     <img style="width:1347px ;" src="/img/banner.jpg" alt="">
   </section>

@@ -14,6 +14,10 @@ class Request extends RModel
   {
     return $this->hasMany(OrderItem::class)->select(DB::raw('product_id,sum(value) as valores, count(1) as qtd'))->groupBy('product_id')->orderBy('product_id', 'desc');
   }
+  public function order_product_items()
+  {
+    return $this->hasMany(OrderItem::class);
+  }
   public static function consultaId($where)
   {
     $order = self::where($where)->first(['id']);

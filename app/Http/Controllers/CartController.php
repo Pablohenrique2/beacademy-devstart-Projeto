@@ -114,4 +114,121 @@ class CartController extends Controller
 
         return redirect()->route('viewcart');
     }
+    public function concludeCart()
+    {
+        $this->middleware('VerifyCsrfToken');
+
+        $req = Request();
+        $idorder  = $req->input('request_id');
+        $iduser = Auth::id();
+
+        $check_order = ModelsRequest::where([
+            'id'      => $idorder,
+            'user_id' => $iduser,
+            'status'  => 'RE' // Reservada
+        ])->exists();
+
+        if (!$check_order) {
+            $req->session()->flash('mensagem-falha', 'Pedido não encontrado!');
+        }
+
+        $check_product = OrderItem::where([
+            'request_id' => $idorder
+        ])->exists();
+        if (!$check_product) {
+            $req->session()->flash('mensagem-falha', 'Produtos do pedido não encontrados!');
+        }
+
+        OrderItem::where([
+            'request_id' => $idorder
+        ])->update([
+            'status' => 'PA'
+        ]);
+        ModelsRequest::where([
+            'id' => $idorder
+        ])->update([
+            'status' => 'PA'
+        ]);
+
+        $req->session()->flash('mensagem-sucesso', 'Compra concluída com sucesso!');
+
+        return redirect('/compras');
+    }
+    public function shoppingCart()
+    {
+
+        $shoppin = ModelsRequest::where([
+            'status'  => 'PA',
+            'user_id' => Auth::id()
+        ])->orderBy('created_at', 'desc')->get();
+
+
+        $canceled = ModelsRequest::where([
+            'status'  => 'CA',
+            'user_id' => Auth::id()
+        ])->orderBy('updated_at', 'desc')->get();
+
+        return view('cart.shopping', compact('shoppin', 'canceled'));
+    }
+    public function cancelCart()
+    {
+        $this->middleware('VerifyCsrfToken');
+
+        $req = Request();
+        $idorder       = $req->input('request_id');
+        $idsorder_prod = $req->input('id');
+        $iduser      = Auth::id();
+
+        if (empty($idsorder_prod)) {
+            $req->session()->flash('mensagem-falha', 'Nenhum item selecionado para cancelamento!');
+            return redirect()->route('shoppingCart');
+        }
+
+        $check_order = ModelsRequest::where([
+            'id'      => $idorder,
+            'user_id' => $iduser,
+            'status'  => 'PA' // Pago
+        ])->exists();
+
+        if (!$check_order) {
+            $req->session()->flash('mensagem-falha', 'Pedido não encontrado para cancelamento!');
+            return redirect()->route('shoppingCart');
+        }
+
+        $check_product = OrderItem::where([
+            'request_id' => $idorder,
+            'status'    => 'PA'
+        ])->whereIn('id', $idsorder_prod)->exists();
+
+        if (!$check_product) {
+            $req->session()->flash('mensagem-falha', 'Produtos do pedido não encontrados!');
+            return redirect()->route('carrinho.compras');
+        }
+
+        OrderItem::where([
+            'request_id' => $idorder,
+            'status'    => 'PA'
+        ])->whereIn('id', $idsorder_prod)->update([
+            'status' => 'CA'
+        ]);
+
+        $check_order_cancel = OrderItem::where([
+            'request_id' => $idorder,
+            'status'    => 'PA'
+        ])->exists();
+
+        if (!$check_order_cancel) {
+            ModelsRequest::where([
+                'id' => $idorder
+            ])->update([
+                'status' => 'CA'
+            ]);
+
+            $req->session()->flash('mensagem-sucesso', 'Compra cancelada com sucesso!');
+        } else {
+            $req->session()->flash('mensagem-sucesso', 'Item(ns) da compra cancelado(s) com sucesso!');
+        }
+
+        return redirect()->route('shoppingCart');
+    }
 }

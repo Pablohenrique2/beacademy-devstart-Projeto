@@ -1,9 +1,12 @@
 @extends('layouts.main')
 @section('title','carrinho')
 @section('content')
+
+
 <div class="container">
   <div class="row">
     <h3> Produtos no carrinho</h3>
+
     <hr>
     @if(Session::has('mensagem-sucesso'))
     <div class="alert alert-success">
@@ -98,6 +101,13 @@
     </div>
     <div class="row">
       <a class="btn-large tooltipped col offset-l8 offset-m18 offset-s18 l4 m4 s4 " data-position="top" data-delay="50" data-tooltip="voltar a pagina inicial para continuar comprando?" href="{{route('home')}}">Continuar comprando</a>
+
+      <form action="{{route('concludeCart')}}" method="post">
+        {{ csrf_field() }}
+        <input type="hidden" name="request_id" value="{{$orders->id}}">
+        <button type="submit">
+          Concluir compra
+        </button>
 
     </div>
     @empty

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -10,12 +10,10 @@
 
   <!-- CSS DA APLICAÇÃO -->
   <link rel="stylesheet" href="{{asset('/css/style.css')}}">
-
-  <title>@yield('title')</title>
+  <title>@yield('titles')</title>
 </head>
 
 <body>
-
   <header>
     <nav class="navbar navbar-expand-lg navbar-light " style="padding:30px">
       <div class="collapse navbar-collapse d-flex justify-content-around" id="navbar">
@@ -51,55 +49,7 @@
             </form>
           </div>
 
-          <div class="handbag">
-            <li class="nav-item dropdown">
-              <a class="nav-link " href="#" id="navbarDropdownMenuLink">
-                <div class=" d-flex cart-nave">
-                  <a href=""><img src="/img/bag-icon.webp" alt=""></a>
-                  <div>
-                    <a href="{{route('viewcart')}}" class="text">
-                      <h5>Minhas compras</h5>
-                      <span>R$ 00,00</span>
-                      <span>(Subtotal)</span>
-                    </a>
-                  </div>
 
-              </a>
-              <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink" style="width:200px ;">
-
-                @forelse($order as $orders)
-
-                @foreach($orders->order_items as $order_item)
-
-                <tr>
-                  <td>{{$order_item->product->name}}</td>
-                  <td>R${{number_format($order_item->product->price, 2, ',', '.' )}}</td>
-                  <td><img src="{{$order_item->product->photo}}" alt="" style="width: 50px;"></td>
-                  </td>
-                </tr>
-
-                @endforeach
-                <form id="form-delete-product" method="POST" action="{{route('cartdelete')}}">
-                  {{csrf_field()}}
-                  @method('DELETE')
-
-                  <input type="hidden" name='request_id' value="{{$orders->id}}">
-                  <input type="hidden" name='product_id' value="{{$order_item->product_id}}">
-                  <input type="hidden" name="item" value="0">
-                  <button type="submit">Retirar produto</button>
-
-                </form>
-                @empty
-                <h5>Não a produto no carrinho...</h5>
-                @endforelse
-
-
-
-
-
-              </div>
-            </li>
-          </div>
 
 
           @auth
@@ -160,20 +110,7 @@
     </nav>
   </header>
 
-  @yield('content')
-
-
-  <!-- JavaScript Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-  <footer class="text-center" style="height: 50px;">
-
-    <p> Copyright &copy 2022 Todos os direitos reservados</p>
-  </footer>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
-  <script type="text/javascript" src="/js/script.js">
-  </script>
+  @yield('conteudo')
 
 </body>
 
