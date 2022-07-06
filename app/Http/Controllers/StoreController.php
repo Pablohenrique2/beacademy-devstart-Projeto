@@ -40,7 +40,7 @@ class StoreController extends Controller
                 ['name', 'like', '%' . $search . '%']
             ])->get();
         } else {
-            $products = Product::all();
+            $products = Product::paginate(2);
         }
         return view('products-store.products', ['products' => $products, 'search' => $search], compact('order'));
     }

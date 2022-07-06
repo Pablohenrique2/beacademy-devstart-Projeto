@@ -1,9 +1,20 @@
-@extends('layouts.main')
-@section('title','criar produto')
-@section('content')
+@extends('layouts.novo')
+@section('titles','criar produto')
+@section('conteudo')
 <div class="container mb-5">
-  <h1>criar</h1>
-  <a href="/produtos/list" class="btn btn-outline-info">Ver lista de produtos</a>
+  <div class="d-flex justify-content-between ">
+    <div>
+      <h1>Criar Produtos</h1>
+      <a href="/produtos/list" class="btn btn-outline-info">Ver lista de produtos</a>
+    </div>
+    <div class=" text-center">
+      <h1>Criar Categoria</h1>
+      <div>
+        <a href="{{route('category.index')}}" class="btn btn-outline-info">Ir para categorias</a>
+      </div>
+    </div>
+  </div>
+
 
   <form action="/bdproduto" method="Post">
     @csrf

@@ -1,6 +1,8 @@
-@extends('layouts.main')
-@section('title','Editar produto' . $products->name)
-@section('content')
+@extends('layouts.novo')
+@section('titles','Editar produto' . $products->name)
+@section('conteudo')
+
+
 <div class="container mb-5">
   <h1>Editando: {{$products->name}}</h1>
 

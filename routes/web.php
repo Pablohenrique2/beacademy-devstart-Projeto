@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
@@ -16,8 +16,16 @@ Route::prefix('produtos')->group(function () {
     Route::delete('/{id}', [StoreController::class, 'destroy'])->middleware('can:admin')->name('produtos-delete-id');
     Route::put('/update/{id}', [StoreController::class, 'update'])->middleware('can:admin')->name('produtos-update');
 });
+Route::prefix('categoria')->group(function () {
+    Route::match(['get', 'post'], '', [CategoryController::class, 'index'])->name('category.index');
+    Route::match(['get', 'post'], '/create', [CategoryController::class, 'create'])->name('category.create');
+    Route::match(['get', 'post'], '/store', [CategoryController::class, 'store'])->name('category.store');
+    Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    Route::match(['get', 'post'], '/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::put('/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+});
 
-Route::match(['get', 'post'], '/categoria', [StoreController::class, 'category'])->name('categoria');
+Route::match(['get', 'post'], '/categorias', [StoreController::class, 'category'])->name('categoria');
 Route::match(['get', 'post'], '/{idcategory?}/categoria', [StoreController::class, 'category'])->name('categoria_por_id');
 
 
@@ -31,7 +39,7 @@ Route::match(['get', 'post'], '/carrinho/cancelar', [CartController::class, 'can
 
 
 
-Route::match(['get', 'post'], '/cadastrei', [ClienteController::class, 'cadastrar'])->name('cadastrar');
+
 
 Route::post('/bdproduto', [StoreController::class, 'store'])->name('bdproduto');
 

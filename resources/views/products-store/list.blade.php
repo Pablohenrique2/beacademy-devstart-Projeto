@@ -1,6 +1,6 @@
-@extends('layouts.main')
-@section('title','lista')
-@section('content')
+@extends('layouts.novo')
+@section('titles','lista')
+@section('conteudo')
 
 <div class="col-md-10 offset-md-1 dashboard-title-container">
   <h1>meus produtos</h1>

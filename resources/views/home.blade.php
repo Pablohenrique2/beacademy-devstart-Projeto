@@ -79,5 +79,24 @@
 
     </section>
   </div>
+  <section class="d-flex section-promotion">
+    <div class="title">
+      <h2>Roupas quentes</h2>
+      <h3>Coleção de sapatos</h3>
+      <h2> Acessórios</h2>
+    </div>
+    <div class="promotion-img">
+      <img src="/img/product-9.jpg" alt="">
+    </div>
+    <div class="promotion-info">
+      <p>OFERTA DA SEMANA</p>
+      <h2>Camisa Com Detalhe Florido Camiseta <br> Masculina Slim Cores Marca</h2>
+      <h3 class="mt-4">R$ 19,99
+      </h3>
+
+
+      <button class="btn btn-dark mt-4">Compre agora</button>
+    </div>
+  </section>
 </main>
 @endsection

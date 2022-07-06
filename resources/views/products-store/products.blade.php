@@ -66,6 +66,10 @@
     </div>
   </div>
 </div>
+<div class="justify-content-center pagination">
+  {{$products->links('pagination::bootstrap-4')}}
+</div>
+</div>
 
 
 

@@ -34,7 +34,7 @@
 
           @can('admin')
           <li class="nav-item">
-            <a href="/produtos/criar" class="nav-link">criar Produtos</a>
+            <a href="/produtos/criar" class="nav-link">Criar produtos</a>
           </li>
           @endcan
 
@@ -159,7 +159,7 @@
         </div>
 
       </div>
-      </div>
+
 
     </nav>
   </header>

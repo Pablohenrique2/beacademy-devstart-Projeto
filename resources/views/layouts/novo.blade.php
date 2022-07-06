@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
@@ -32,7 +32,7 @@
 
           @can('admin')
           <li class="nav-item">
-            <a href="/produtos/criar" class="nav-link">criar Produtos</a>
+            <a href="/produtos/criar" class="nav-link">Criar produtos</a>
           </li>
           @endcan
 
