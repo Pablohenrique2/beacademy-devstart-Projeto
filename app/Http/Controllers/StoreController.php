@@ -40,7 +40,7 @@ class StoreController extends Controller
                 ['name', 'like', '%' . $search . '%']
             ])->get();
         } else {
-            $products = Product::paginate(2);
+            $products = Product::paginate(12);
         }
         return view('products-store.products', ['products' => $products, 'search' => $search], compact('order'));
     }
@@ -113,5 +113,15 @@ class StoreController extends Controller
         $data['listproducts'] = $product;
         $data['listcategories'] = $categories;
         return view('categories.categories', $data);
+    }
+    public function contact()
+    {
+        $order = ModelsRequest::where(
+            [
+                'status' => 'RE',
+                'user_id' => auth()->id()
+            ]
+        )->get();
+        return view('contact', compact('order'));
     }
 }

@@ -43,7 +43,7 @@ Route::match(['get', 'post'], '/carrinho/cancelar', [CartController::class, 'can
 
 Route::post('/bdproduto', [StoreController::class, 'store'])->name('bdproduto');
 
-
+Route::match(['get', 'post'], '/contato', [StoreController::class, 'contact'])->name('index.contact');
 
 
 

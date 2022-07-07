@@ -1,5 +1,5 @@
 @extends('layouts.novo')
-@section('title','shopping')
+@section('titles','shopping')
 @section('conteudo')
 <div class="shop-title">
   <h4>Minhas compras</h4>

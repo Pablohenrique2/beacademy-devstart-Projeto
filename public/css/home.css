@@ -1,6 +1,4 @@
-/*---------------------
-  Banner
------------------------*/
+
 .spad{
   margin-top: 100px;
   margin-bottom: 100px;
@@ -82,9 +80,6 @@
 	transition: all, 0.3s;
 }
 
-/*---------------------
-  product-disclosure
------------------------*/
 .product-section {
   margin-left:100px ;
 	margin-bottom: 100px;
@@ -137,5 +132,11 @@ font-size: 18px;
 .promotion-info p{
 	color: #e53637;
 }
+.social-network{
 
+margin-top: 180px;
+}
+.social-network h3{
+	margin-top: 50px;
+}
 

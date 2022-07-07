@@ -63,7 +63,7 @@
         <h6>{{$product->name}}</h6>
         <h5>R$ {{number_format($product->price, 2, ',', '.' )}}</h5>
         <div class="d-flex ">
-          <a href="/produtos/{{$product->id}}" class="btn btn-primary">Comprar</a>
+          <a href="/produtos/{{$product->id}}" class="btn btn-dark">Comprar</a>
           <form action="{{route('addcart')}}" method="post">
             {{csrf_field()}}
             <input type="hidden" name='id' value="{{$product->id}}">
@@ -98,5 +98,52 @@
       <button class="btn btn-dark mt-4">Compre agora</button>
     </div>
   </section>
+  <section class="d-flex mb-5">
+    <div class="d-flex flex-wrap" style="width: 780px; height:522; margin-top:100px; margin-left: 100px; margin-bottom:50px;">
+      <img style="width: 249.97px; height:261;" src="/img/product-1.jpg" alt="">
+      <img style="width: 249.97px; height:261;" src="/img/product-2.jpg" alt="">
+      <img style="width: 249.97px; height:261;" src="/img/product-7.jpg" alt="">
+      <img style="width: 249.97px; height:261;" src="/img/product-8.jpg" alt="">
+      <img style="width: 249.97px; height:261;" src="/img/product-11.jpg" alt="">
+      <img style="width: 249.97px; height:261;" src="/img/product-12.jpg" alt="">
+    </div>
+    <div class="social-network">
+      <h2>Instagram</h2>
+      <p>Lorem ipsum dolor sit amet, consecteturn <br> adipiscing elit, sed do eiusmod tempor incididunt <br> ut labore et dolore magna aliqua.</p>
+      <h3 style="color:#e53637 ;">#Male_Fashion</h3>
+    </div>
+  </section>
+  <div class="container ">
+    <div class="text-center">
+      <p style="color:#e53637 ;">PARCEIROS</p>
+      <h2>Clientes satisfeito</h2>
+    </div>
+    <div class="d-flex flex-wrap mt-4">
+      <div class="text-center mb-3" style="width: 262.5px; height: 165px;">
+        <img src="/img/client-1.png" alt="">
+      </div>
+      <div class="text-center mb-3" style="width: 262.5px;height: 165px;">
+        <img src="/img/client-2.png" alt="">
+      </div>
+      <div class="text-center mb-3" style="width: 262.5px; height: 165px;">
+        <img src="/img/client-3.png" alt="">
+      </div>
+      <div class="text-center mb-3" style="width: 262.5px; height: 165px;">
+        <img src="/img/client-4.png" alt="">
+      </div>
+      <div class="text-center mb-3" style="width: 262.5px; height: 165px;">
+        <img src="/img/client-5.png" alt="">
+      </div>
+      <div class="text-center mb-3" style="width: 262.5px; height: 165px;">
+        <img src="/img/client-6.png" alt="">
+      </div>
+      <div class="text-center mb-3" style="width: 262.5px; height: 165px;">
+        <img src="/img/client-7.png" alt="">
+      </div>
+      <div class="text-center mb-3" style="width: 262.5px; height: 165px;">
+        <img src="/img/client-8.png" alt="">
+      </div>
+    </div>
+  </div>
 </main>
 @endsection
