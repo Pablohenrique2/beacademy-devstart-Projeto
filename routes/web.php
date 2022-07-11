@@ -11,7 +11,7 @@ Route::prefix('produtos')->group(function () {
     Route::match(['get', 'post'], '', [StoreController::class, 'products'])->name('produtos');
     Route::match(['get', 'post'], '/{idcategory?}/produtos', [StoreController::class, 'products'])->name('categoria.id');
     Route::match(['get', 'post'], '/pesquisa', [StoreController::class, 'products_search'])->name('produtos.search');
-    Route::match(['get', 'post'], '/criar', [StoreController::class, 'create'])->middleware('can:admin')->name('produtos-criar');
+    Route::match(['get', 'post'], '/criar', [StoreController::class, 'create'])->middleware('can:admin')->name('produtos.criar');
     Route::match(['get', 'post'], '/list', [StoreController::class, 'list'])->middleware('can:admin')->name('produtos-list');
     Route::match(['get', 'post'], '/{id}', [StoreController::class, 'show'])->name('produtos.id');
     Route::match(['get', 'post'], '/editar/{id}', [StoreController::class, 'edit'])->name('produtos-edit');
@@ -39,24 +39,5 @@ Route::prefix('carrinho')->group(
     }
 );
 
-
-Route::match(['get', 'post'], '/categorias', [StoreController::class, 'category'])->name('categoria');;
-
-
-
-
 Route::post('/bdproduto', [StoreController::class, 'store'])->name('bdproduto');
-
 Route::match(['get', 'post'], '/contato', [StoreController::class, 'contact'])->name('index.contact');
-
-
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return redirect('/');
-    })->name('dashboard');
-});

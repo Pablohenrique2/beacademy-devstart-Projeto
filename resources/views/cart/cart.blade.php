@@ -13,18 +13,25 @@
 
 
 
-    @if(Session::has('mensagem-sucesso'))
+    @if(session()->has('cartAdd'))
     <div class="alert alert-success">
-      <strong>{{Session::get('mensagem sucesso')}}</strong>
+      <strong>{{session()->get('cartAdd')}}</strong>
 
     </div>
     @endif
-    @if(Session::has('mensagem falha'))
-    <div>
-      <strong>{{Session::get('mensagem-falha')}}</strong>
+    @if(session()->has('cartRemove'))
+    <div class="alert alert-danger">
+      <strong>{{session()->get('cartRemove')}}</strong>
 
     </div>
     @endif
+    @if(session()->has('mensagem-falha'))
+    <div class="alert alert-danger">
+      <strong>{{session()->get('mensagem-falha')}}</strong>
+
+    </div>
+    @endif
+
     @forelse($order as $orders)
     <h5>Pedido{{$orders->id}}</h5>
     <h5>Criado em{{$orders->created_at->format('d/m/y H:i')}}</h5>

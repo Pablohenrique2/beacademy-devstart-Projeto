@@ -28,7 +28,7 @@
         <h6>{{$product->name}}</h6>
         <h5>R$ {{number_format($product->price, 2, ',', '.' )}}</h5>
         <div class="d-flex">
-          <a href="/produtos/{{$product->id}}" class="btn btn-dark">Comprar</a>
+          <a href="/produtos/{{$product->id}}" class="btn btn-dark">Visualizar</a>
           <form action="{{route('addcart')}}" method="post">
             {{csrf_field()}}
             <input type="hidden" name='id' value="{{$product->id}}">

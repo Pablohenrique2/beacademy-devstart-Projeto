@@ -15,8 +15,12 @@
     <p>1x sem juros de R$ {{number_format($products->price, 2, ',', '.' )}}</p>
     <a href="">VER AS FORMAS DE PARCELAMENTO</a>
     <div class="d-grid">
-      <button class="btn btn-info">Adicionar a sacola</button>
-      <button class="btn btn-danger">Comprar agora</button>
+      <form action="{{route('addcart')}}" method="post">
+        {{csrf_field()}}
+        <input type="hidden" name='id' value="{{$products->id}}">
+        <button type="submit" class="btn btn-info" style="margin-top: 20px; margin-left:10px;">Adicionar produto no carrinho</button>
+
+      </form>
     </div>
   </div>
 </div>

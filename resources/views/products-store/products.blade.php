@@ -17,7 +17,7 @@
     <input type="search">
     <div>
       <h3>categorias</h3>
-      <div class=" list-group ">
+      <div class=" list-group">
 
         @if(isset($listcategories) && count($listcategories)>0 )
         <a href="{{route('produtos')}}" class="list-group-item list-group-item-action @if(0 == $idcategory) active @endif ">Geral</a>
@@ -48,7 +48,7 @@
         <h6>{{$product->name}}</h6>
         <h5>R$ {{number_format($product->price, 2, ',', '.' )}}</h5>
         <div class="d-flex">
-          <a href="/produtos/{{$product->id}}" class="btn btn-dark">Comprar</a>
+          <a href="/produtos/{{$product->id}}" class="btn btn-dark">Visualizar</a>
           <form action="{{route('addcart')}}" method="post">
             {{csrf_field()}}
             <input type="hidden" name='id' value="{{$product->id}}">

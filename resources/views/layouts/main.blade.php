@@ -29,17 +29,17 @@
 
           </li>
           <li class="nav-item">
-            <a href="/produtos" class="nav-link">Produtos</a>
+            <a href="{{route('produtos')}}" class="nav-link">Produtos</a>
           </li>
 
           @can('admin')
           <li class="nav-item">
-            <a href="/produtos/criar" class="nav-link">Criar produtos</a>
+            <a href="{{route('produtos.criar')}}" class="nav-link">Adicionar produtos</a>
           </li>
           @endcan
 
           <li class="nav-item">
-            <a href="/contato" class="nav-link">contato</a>
+            <a href="{{route('index.contact')}}" class="nav-link">contato</a>
           </li>
         </ul>
         <div class="d-flex group">
@@ -53,7 +53,7 @@
 
           <div class="handbag">
             <li class="nav-item dropdown">
-              <a class="nav-link " href="#" id="navbarDropdownMenuLink">
+              <a class="nav-link " href="{{route('viewcart')}}" id="navbarDropdownMenuLink">
                 <div class=" d-flex cart-nave">
                   <a href=""><img src="/img/bag-icon.webp" alt=""></a>
                   <div>
@@ -119,13 +119,14 @@
                   <p>bem vindo {{Auth::user()->name}}</p>
                 </div>
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="margin: 0px; padding:0px;">
                 <form action="/logout" method="post">
                   @csrf
-                  <ul>
-                    <li><a href="/logout" class="nav-link" onclick="event.preventDefault();
-                   this.closest('form').submit();"> Sair</a></li>
-                    <li><a href="/compras">Minhas compras</a></li>
+                  <div class=" list-group">
+                    <a href="{{route('shoppingCart')}}" class="list-group-item list-group-item-action ">Minhas compras</a>
+                    <a href="/logout" class="list-group-item list-group-item-action" onclick="event.preventDefault();
+                   this.closest('form').submit();"> Sair</a>
+                  </div>
 
                   </ul>
                 </form>

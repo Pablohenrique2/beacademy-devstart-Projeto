@@ -44,8 +44,8 @@ class CartController extends Controller
         $user->save();
 
 
-        $req->session()->flash('mensagem-sucesso', 'produto adicionado no carinho com sucesso!');
-        return redirect('/carrinho');
+
+        return redirect('/carrinho')->with('cartAdd', 'produto adicionado no carinho com sucesso!');
     }
     public function __construct()
     {
@@ -112,7 +112,7 @@ class CartController extends Controller
 
         $req->session()->flash('mensagem-sucesso', 'Produto removido do carrinho com sucesso!');
 
-        return redirect()->route('viewcart');
+        return redirect()->route('viewcart')->with('cartRemove', 'Produto removido do carrinho com sucesso!');
     }
     public function concludeCart()
     {
@@ -150,9 +150,9 @@ class CartController extends Controller
             'status' => 'PA'
         ]);
 
-        $req->session()->flash('mensagem-sucesso', 'Compra concluída com sucesso!');
 
-        return redirect('/compras');
+
+        return redirect()->route('shoppingCart')->with('compraOk', 'Compra concluída com sucesso!');
     }
     public function shoppingCart()
     {

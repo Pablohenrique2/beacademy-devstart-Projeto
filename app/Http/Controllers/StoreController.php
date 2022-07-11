@@ -127,26 +127,6 @@ class StoreController extends Controller
     }
 
 
-    public function category($idcategory = null)
-    {
-        $order = ModelsRequest::where(
-            [
-                'status' => 'RE',
-                'user_id' => auth()->id()
-            ]
-        )->get();
-        $data = [];
-        $categories = Category::all();
-        $queryproduct = Product::limit(10);
-        if ($idcategory != 0) {
-            $queryproduct->where("category_id", $idcategory);
-        }
-
-        $product = $queryproduct->get();
-        $data['listproducts'] = $product;
-        $data['listcategories'] = $categories;
-        return view('categories.categories', $data, compact('order'));
-    }
     public function contact()
     {
         $order = ModelsRequest::where(

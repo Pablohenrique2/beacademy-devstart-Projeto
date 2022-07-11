@@ -3,6 +3,24 @@
 @section('conteudo')
 <div class="shop-title">
   <h4>Minhas compras</h4>
+  @if(session()->has('compraOk'))
+  <div class="alert alert-success">
+    <strong>{{session()->get('compraOk')}}</strong>
+
+  </div>
+  @endif
+  @if(session()->has('mensagem-sucesso'))
+  <div class="alert alert-success">
+    <strong>{{session()->get('mensagem-sucesso')}}</strong>
+
+  </div>
+  @endif
+  @if(session()->has('mensagem-falha'))
+  <div class="alert alert-danger">
+    <strong>{{session()->get('mensagem-falha')}}</strong>
+
+  </div>
+  @endif
   <div class="shop-subtitle">
     <a href="/">Home</a><span>></span><span class="detalhe">Minhas compras</span>
   </div>
@@ -10,12 +28,7 @@
 <div class="container">
   <div class="row">
 
-    @if (Session::has('mensagem-sucesso'))
-    <div>{{ Session::get('mensagem-sucesso') }}</div>
-    @endif
-    @if (Session::has('mensagem-falha'))
-    <div>{{ Session::get('mensagem-falha') }}</div>
-    @endif
+
     <div></div>
     <div>
       <h4>Compras concluídas</h4>
@@ -123,7 +136,7 @@
               @endphp
               <tr>
                 <td>
-                  <img width="100" height="100" src="{{ $order_product->product->imagem }}">
+                  <img width="100" height="100" src="{{ $order_product->product->photo }}">
                 </td>
                 <td>{{ $order_product->product->name}}</td>
                 <td>R$ {{ number_format($order_product->value, 2, ',', '.') }}</td>
