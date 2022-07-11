@@ -29,8 +29,19 @@
       <img src="{{$products->photo}}" alt="imagem produto" style="width: 50px;">
     </div>
     <div class="mb-3">
-      <label for="category_id" class="form-label">categoria</label><br>
-      <input type="number" name="category_id" id="category_id" class="form-control" value="{{$products->category_id}}" placeholder=" categoria do produto">
+      <label for="" class="form-label">Categoria</label>
+      @foreach($categories as $category)
+      @if($category->id == $products->category_id)
+      <input type="text" value="{{$category->categories}}" class="form-select" disabled>
+      @endif
+      @endforeach
+      <label for="" class="form-label">Selecionar nova categoria:</label>
+      <select class="form-select" aria-label="Default select example" name="category_id">
+
+        @foreach($categories as $category)
+        <option value="{{$category->id}}">{{$category->categories}}</option>
+        @endforeach
+      </select>
     </div>
     <div class="mb-3">
       <label for="quantity" class="form-label">quantidade</label><br>

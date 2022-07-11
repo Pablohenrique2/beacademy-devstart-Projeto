@@ -26,7 +26,33 @@ class StoreController extends Controller
 
         return view('home', ['products' => $products], compact('order'));
     }
-    public function products(Request $request)
+    public function products(Request $request, $idcategory = null)
+    {
+
+        $order = ModelsRequest::where(
+            [
+                'status' => 'RE',
+                'user_id' => auth()->id()
+            ]
+        )->get();
+        $data = [];
+        $categories = Category::all();
+        $queryproduct = Product::limit(12);
+
+        if ($idcategory != 0) {
+            $queryproduct->where("category_id", $idcategory);
+        }
+
+
+        $product = $queryproduct->paginate(12);
+        $data['products'] = $product;
+        $data['listcategories'] = $categories;
+        $data['idcategory'] = $idcategory;
+
+
+        return view('products-store.products', $data, compact('order'));
+    }
+    public function products_search(Request $request)
     {
         $order = ModelsRequest::where(
             [
@@ -35,23 +61,23 @@ class StoreController extends Controller
             ]
         )->get();
         $search = request('search');
-        if ($search) {
-            $products = Product::where([
-                ['name', 'like', '%' . $search . '%']
-            ])->get();
-        } else {
-            $products = Product::paginate(12);
-        }
-        return view('products-store.products', ['products' => $products, 'search' => $search], compact('order'));
+
+        $products = Product::where([
+            ['name', 'like', '%' . $search . '%']
+        ])->get();
+        return view('products-store.products_search', ['products' => $products, 'search' => $search], compact('order'));
     }
     public function create(Request $request)
     {
         $data = [];
+        $categories = Category::all();
 
-        return view('products-store.create');
+
+        return view('products-store.create', compact('categories'));
     }
     public function store(Request $request)
     {
+
         $products = new Product();
         $products->name = $request->name;
         $products->description = $request->description;
@@ -77,8 +103,9 @@ class StoreController extends Controller
     }
     public function edit($id)
     {
+        $categories = Category::all();
         $products = Product::findOrfail($id);
-        return view('products-store.edit', ['products' => $products]);
+        return view('products-store.edit', ['products' => $products, 'categories' => $categories]);
     }
     public function show($id)
 
@@ -102,9 +129,15 @@ class StoreController extends Controller
 
     public function category($idcategory = null)
     {
+        $order = ModelsRequest::where(
+            [
+                'status' => 'RE',
+                'user_id' => auth()->id()
+            ]
+        )->get();
         $data = [];
         $categories = Category::all();
-        $queryproduct = Product::limit(4);
+        $queryproduct = Product::limit(10);
         if ($idcategory != 0) {
             $queryproduct->where("category_id", $idcategory);
         }
@@ -112,7 +145,7 @@ class StoreController extends Controller
         $product = $queryproduct->get();
         $data['listproducts'] = $product;
         $data['listcategories'] = $categories;
-        return view('categories.categories', $data);
+        return view('categories.categories', $data, compact('order'));
     }
     public function contact()
     {

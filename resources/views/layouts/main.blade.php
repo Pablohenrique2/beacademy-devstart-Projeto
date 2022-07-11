@@ -44,7 +44,7 @@
         </ul>
         <div class="d-flex group">
           <div>
-            <form action="/produtos" class="d-flex" role="search" method="GET">
+            <form action="{{route('produtos.search')}}" class="d-flex" role="search" method="GET">
               <input class="form-control me-2 w-200" type="search" name="search" placeholder="Buscar" aria-label="Search">
               <button class="botao" type="submit"><img src="/img/search.png" alt=""></button>
 

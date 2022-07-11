@@ -2,36 +2,16 @@
 @section('title' ,'Produtos')
 @section('content')
 
-
-
 <div class="shop-title">
+
 
   <h4>Fazer compras</h4>
   <div class="shop-subtitle">
-    <a href="/">Home</a><span>></span><span class="detalhe">Loja</span>
+    <a href="/">Home</a><span>></span><span class="detalhe">Buscando por:{{$search}}</span>
   </div>
 
 </div>
-<div class="d-flex shop-disclosure">
-  <div class="shop-disclosure-1">
-    <input type="search">
-    <div>
-      <h3>categorias</h3>
-      <div class=" list-group ">
-
-        @if(isset($listcategories) && count($listcategories)>0 )
-        <a href="{{route('produtos')}}" class="list-group-item list-group-item-action @if(0 == $idcategory) active @endif ">Geral</a>
-        @foreach($listcategories as $id => $category)
-        <a href="{{route('categoria.id',['idcategory'=>$category->id])}}" class="list-group-item list-group-item-action @if($category->id == $idcategory) active @endif ">{{$category->categories}}</a>
-        @endforeach
-
-        @endif
-      </div>
-    </div>
-  </div>
-
-
-
+<div class=" shop-disclosure container">
 
   <div>
     <p>
@@ -63,9 +43,10 @@
   </div>
 </div>
 
-<div class="justify-content-center pagination">
-  {{$products->links('pagination::bootstrap-4')}}
 </div>
 
-</div>
+
+
+
+
 @endsection

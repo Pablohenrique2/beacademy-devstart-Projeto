@@ -35,8 +35,13 @@
       <input type="text" class="form-control" name="photo" id="photo" placeholder=" foto do produto">
     </div>
     <div class="mb-3">
-      <label for="category_id" class="form-label">categoria</label><br>
-      <input type="number" class="form-control" name="category_id" id="category_id" placeholder=" categoria do produto">
+      <label for="" class="form-label">Categoria</label>
+      <select class="form-select" aria-label="Default select example" name="category_id">
+
+        @foreach($categories as $category)
+        <option value="{{$category->id}}">{{$category->categories}}</option>
+        @endforeach
+      </select>
     </div>
     <div class="mb-3">
       <label for="quantity" class="form-label">quantidade</label><br>

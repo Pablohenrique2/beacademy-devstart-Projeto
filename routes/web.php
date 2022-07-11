@@ -9,6 +9,8 @@ Route::match(['get', 'post'], '/', [StoreController::class, 'index'])->name('hom
 
 Route::prefix('produtos')->group(function () {
     Route::match(['get', 'post'], '', [StoreController::class, 'products'])->name('produtos');
+    Route::match(['get', 'post'], '/{idcategory?}/produtos', [StoreController::class, 'products'])->name('categoria.id');
+    Route::match(['get', 'post'], '/pesquisa', [StoreController::class, 'products_search'])->name('produtos.search');
     Route::match(['get', 'post'], '/criar', [StoreController::class, 'create'])->middleware('can:admin')->name('produtos-criar');
     Route::match(['get', 'post'], '/list', [StoreController::class, 'list'])->middleware('can:admin')->name('produtos-list');
     Route::match(['get', 'post'], '/{id}', [StoreController::class, 'show'])->name('produtos.id');
@@ -25,18 +27,20 @@ Route::prefix('categoria')->group(function () {
     Route::put('/update/{id}', [CategoryController::class, 'update'])->name('category.update');
 });
 
-Route::match(['get', 'post'], '/categorias', [StoreController::class, 'category'])->name('categoria');
-Route::match(['get', 'post'], '/{idcategory?}/categoria', [StoreController::class, 'category'])->name('categoria_por_id');
+Route::prefix('carrinho')->group(
+    function () {
+
+        Route::match(['get', 'post'], '', [CartController::class, 'viewCart'])->name('viewcart');
+        Route::match(['get', 'post'], '/adicionar', [CartController::class, 'addcart'])->name('addcart');
+        Route::delete('/delete', [CartController::class, 'deleteCart'])->name('cartdelete');
+        Route::match(['get', 'post'], '/concluir', [CartController::class, 'concludeCart'])->name('concludeCart');
+        Route::match(['get', 'post'], '/compras', [CartController::class, 'shoppingCart'])->name('shoppingCart');
+        Route::match(['get', 'post'], '/cancelar', [CartController::class, 'cancelCart'])->name('cancelCart');
+    }
+);
 
 
-Route::match(['get', 'post'], '/carrinho', [CartController::class, 'viewCart'])->name('viewcart');
-Route::match(['get', 'post'], '/carrinho/adicionar', [CartController::class, 'addcart'])->name('addcart');
-Route::delete('/carrinho/delete', [CartController::class, 'deleteCart'])->name('cartdelete');
-Route::match(['get', 'post'], '/carrinho/concluir', [CartController::class, 'concludeCart'])->name('concludeCart');
-Route::match(['get', 'post'], '/compras', [CartController::class, 'shoppingCart'])->name('shoppingCart');
-Route::match(['get', 'post'], '/carrinho/cancelar', [CartController::class, 'cancelCart'])->name('cancelCart');
-
-
+Route::match(['get', 'post'], '/categorias', [StoreController::class, 'category'])->name('categoria');;
 
 
 
