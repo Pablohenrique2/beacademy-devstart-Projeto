@@ -83,6 +83,10 @@ class StoreController extends Controller
         $products->description = $request->description;
         $products->price = $request->price;
         $products->photo = $request->photo;
+        $products->sizes = $request->sizes;
+        $products->mark = $request->mark;
+        $products->colors = $request->colors;
+        $products->cost_price = $request->cost_price;
         $products->category_id = $request->category_id;
         $products->quantity = $request->quantity;
 

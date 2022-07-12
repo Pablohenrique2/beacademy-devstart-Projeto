@@ -16,9 +16,11 @@
         <th scope="col">id</th>
         <th scope="col">name</th>
         <th scope="col">descrição</th>
-        <th scope="col">price</th>
+        <th scope="col">preço de custo</th>
+        <th scope="col">preço</th>
+        <th scope="col">marca</th>
         <th scope="col">quantidade</th>
-        <th scope="col">photo</th>
+        <th scope="col">foto</th>
         <th scope="col">Ações</th>
       </tr>
     </thead>
@@ -28,7 +30,9 @@
         <th scope="row">{{$product->id}}</th>
         <td>{{$product->name}}</td>
         <td>{{$product->description}}</td>
+        <td>R${{number_format($product->cost_price, 2, ',', '.' )}}</td>
         <td>R${{number_format($product->price, 2, ',', '.' )}}</td>
+        <td>{{$product->mark}}</td>
         <td>{{$product->quantity}}</td>
         <td><img src="{{$product->photo}}" alt="" style="width: 50px;"></td>
         <td><a href="/produtos/editar/{{$product->id}}" class="btn btn-info edit-btn">Editar</a>
