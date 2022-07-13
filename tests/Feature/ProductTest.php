@@ -15,7 +15,7 @@ class ProductTest extends TestCase
      *
      * @return void
      */
-    public function test_Product()
+    public function test_product()
     {
         $user = User::factory()->create();
         $response = $this->post('/login', [
@@ -25,14 +25,14 @@ class ProductTest extends TestCase
         ]);
         $this->actingAs($user);
 
-        $response = $this->get('/produtos/criar');
+        $response = $this->get('/');
 
         $response->assertStatus(200);
     }
-    public function test_create_Product()
+    public function test_create_product()
     {
         $response = $this->post(
-            '/produtos/criar',
+            route('produtos.criar'),
             [
                 'name' => 'blusa',
                 'descripition' => 'melhor blusa',
@@ -44,6 +44,40 @@ class ProductTest extends TestCase
             ]
 
         );
-        $response->assertStatus(200);
+        $response->assertSuccessful();
+    }
+
+    public function test_edit_product()
+    {
+        $product = Product::factory()->make([
+            'name' => 'blusa',
+            'descripition' => 'melhor blusas',
+            'price' => 1231,
+            'photo' => 'ggdjgherej',
+            'category_id' => 1,
+            'quantity' => 221,
+        ]);
+        $product = Product::first();
+        if ($product) {
+            $product->update();
+            if ($product->update()) {
+                $this->assertTrue(true);
+            }
+        }
+        $this->assertFalse(false);
+    }
+    public function test_delete_product()
+    {
+
+        $product = Product::factory()->count(1)->make();
+        $product = Product::first();
+        if ($product) {
+            $product->delete();
+            if ($product->delete()) {
+                $this->assertTrue(true);
+            }
+        }
+
+        $this->assertFalse(false);
     }
 }
