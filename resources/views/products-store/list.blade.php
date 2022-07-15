@@ -1,7 +1,24 @@
 @extends('layouts.novo')
 @section('titles','lista')
 @section('conteudo')
+@if(session()->has('productcad'))
+<div class="alert alert-success">
+  <strong>{{session()->get('productcad')}}</strong>
 
+</div>
+@endif
+@if(session()->has('productdel'))
+<div class="alert alert-danger">
+  <strong>{{session()->get('productdel')}}</strong>
+
+</div>
+@endif
+@if(session()->has('productedit'))
+<div class="alert alert-success">
+  <strong>{{session()->get('productedit')}}</strong>
+
+</div>
+@endif
 <div class="col-md-10 offset-md-1 dashboard-title-container">
   <h1>meus produtos</h1>
   <a href="/produtos/criar" class="btn btn btn-outline-primary">Adicionar produtos</a>

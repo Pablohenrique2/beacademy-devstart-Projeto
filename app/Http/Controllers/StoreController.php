@@ -91,7 +91,7 @@ class StoreController extends Controller
         $products->quantity = $request->quantity;
 
         $products->save();
-        return redirect('/produtos/list');
+        return redirect('/produtos/list')->with('productcad', 'Produto cadastrado com sucesso!');
     }
     public function list(Request $request)
     {
@@ -103,7 +103,7 @@ class StoreController extends Controller
     public function destroy($id)
     {
         Product::findOrfail($id)->delete();
-        return redirect('/produtos/list');
+        return redirect('/produtos/list')->with('productdel', 'Produto deletado com sucesso!');
     }
     public function edit($id)
     {
@@ -127,7 +127,7 @@ class StoreController extends Controller
     public function update(Request $request)
     {
         Product::findOrfail($request->id)->update($request->all());
-        return redirect('/produtos/list');
+        return redirect('/produtos/list')->with('productedit', 'Produto editado com sucesso!');
     }
 
 
