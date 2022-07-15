@@ -112,7 +112,7 @@
   </header>
 
   @yield('conteudo')
-
+  @yield('scripts')
 </body>
 
 </html>
