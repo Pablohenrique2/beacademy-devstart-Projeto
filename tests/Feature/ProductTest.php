@@ -44,7 +44,7 @@ class ProductTest extends TestCase
             ]
 
         );
-        $response->assertSuccessful();
+        $response->assertSuccessful(200);
     }
 
     public function test_edit_product()
