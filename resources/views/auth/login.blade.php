@@ -1,48 +1,62 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+<!DOCTYPE html>
+<html lang="pt-br">
 
-        <x-jet-validation-errors class="mb-4" />
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <title>Login</title>
+</head>
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
-        @endif
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+@if (session('status'))
+<div class="alert alert-danger" style="background-color:black ;">
+  {{ session('status') }}
+</div>
+@endif
 
-            <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
+<body style="background-image:url('/img/capa-login.svg'); margin-left:100px; background-repeat: no-repeat;">
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
+  <div class="container w-50 " style="margin-top: 120px;">
+    <div class="text-center mb-3">
+      <a href="/"><img src="/img/logo.png" alt=""></a>
+    </div>
+    <div class="justify-content-center" style="background-color: #e53637; border-radius:5px;">
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
+      <form method="POST" action="{{ route('login') }}" class="container ">
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
+        <x-jet-validation-errors class="text-white " style="margin-bottom: -20px;" />
 
-                <x-jet-button class="ml-4">
-                    {{ __('Log in') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+        @csrf
+
+        <div class="form-outline mb-4 ">
+          <x-jet-label for=" email" class="form-label text-white mt-4" value="{{ __('Email') }}" />
+          <x-jet-input id="email" class="block mt-1 w-full form-control" type="email" name="email" :value="old('email')" required autofocus />
+        </div>
+
+
+        <div class="form-outline mb-4">
+          <x-jet-label for="password" class="form-label text-white" value="{{ __('Password') }}" />
+          <x-jet-input id="password" class="block mt-1 w-full form-control" type="password" name="password" required autocomplete="current-password" />
+        </div>
+        <div class="col mb-5">
+
+          <a href="{{ route('password.request') }}" class="text-black ">Esqueceu a Senha?</a>
+          <div>
+            <a href="/register" class="text-black ">Ainda nao possui conta? cadastre Aqui!!</a>
+          </div>
+        </div>
+
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-dark btn-block mb-4 w-50 ">Entrar</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
