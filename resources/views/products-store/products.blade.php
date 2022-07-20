@@ -43,7 +43,7 @@
 
       <div class="disclosure">
         <div>
-          <img src="{{$product->photo}}" alt="">
+          <img src="{{asset('storage/'.$product->photo)}}" alt="">
         </div>
         <h6>{{$product->name}}</h6>
         <h5>R$ {{number_format($product->price, 2, ',', '.' )}}</h5>

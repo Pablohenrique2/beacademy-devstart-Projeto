@@ -30,11 +30,7 @@
             <a href="{{route('produtos')}}" class="nav-link">Produtos</a>
           </li>
 
-          @can('admin')
-          <li class="nav-item">
-            <a href="{{route('produtos.criar')}}" class="nav-link">Adicionar produtos</a>
-          </li>
-          @endcan
+
 
           <li class="nav-item">
             <a href="{{route('index.contact')}}" class="nav-link">contato</a>
@@ -70,6 +66,9 @@
                   @csrf
                   <div class=" list-group">
                     <a href="{{route('shoppingCart')}}" class="list-group-item list-group-item-action ">Minhas compras</a>
+                    @can('admin')
+                    <a href="{{route('produtos.criar')}}" class="list-group-item">Admin</a>
+                    @endcan
                     <a href="/logout" class="list-group-item list-group-item-action" onclick="event.preventDefault();
                    this.closest('form').submit();"> Sair</a>
                   </div>

@@ -51,7 +51,7 @@
         <td>R${{number_format($product->price, 2, ',', '.' )}}</td>
         <td>{{$product->mark}}</td>
         <td>{{$product->quantity}}</td>
-        <td><img src="{{$product->photo}}" alt="" style="width: 50px;"></td>
+        <td><img src="{{asset('storage/'.$product->photo)}}" alt="" style="width: 50px;"></td>
         <td><a href="/produtos/editar/{{$product->id}}" class="btn btn-info edit-btn">Editar</a>
           <form action="/produtos/{{$product->id}}" method="post">
             @csrf

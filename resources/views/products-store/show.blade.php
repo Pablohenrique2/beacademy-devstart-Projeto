@@ -5,7 +5,7 @@
 
 <div class="d-flex  mb-4" style="margin-left: 100px ;  margin-top:50px; ">
   <div>
-    <img src="{{$products->photo}}" alt="" style="height:500px">
+    <img src="{{asset('storage/'.$products->photo)}}" alt="" style="height:500px; width:500px">
   </div>
   <div style="width: 422px; margin-left: 50px ;">
     <h1>{{$products->name}}</h1>

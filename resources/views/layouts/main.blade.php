@@ -32,11 +32,7 @@
             <a href="{{route('produtos')}}" class="nav-link">Produtos</a>
           </li>
 
-          @can('admin')
-          <li class="nav-item">
-            <a href="{{route('produtos.criar')}}" class="nav-link">Adicionar produtos</a>
-          </li>
-          @endcan
+
 
           <li class="nav-item">
             <a href="{{route('index.contact')}}" class="nav-link">contato</a>
@@ -75,7 +71,8 @@
                       <div>
                         <tr>
                           <td>
-                            <div><img src="{{$order_item->product->photo}}" alt="" style="width: 50px;">{{$order_item->product->name}}</div>
+
+                            <div><img src="{{asset('storage/'.$order_item->product->photo)}}" alt="" style="width: 50px;">{{$order_item->product->name}}</div>
                             <h5>QTD:{{$order_item->qtd}}</h5>R${{number_format($order_item->product->price, 2, ',', '.' )}}
                           </td>
 
@@ -124,7 +121,10 @@
                   @csrf
                   <div class=" list-group">
                     <a href="{{route('shoppingCart')}}" class="list-group-item list-group-item-action ">Minhas compras</a>
-                    <a href="/logout" class="list-group-item list-group-item-action" onclick="event.preventDefault();
+                    @can('admin')
+                    <a href="{{route('produtos.criar')}}" class="list-group-item">Admin</a>
+                    @endcan
+                    <a href=" /logout" class="list-group-item list-group-item-action" onclick="event.preventDefault();
                    this.closest('form').submit();"> Sair</a>
                   </div>
 

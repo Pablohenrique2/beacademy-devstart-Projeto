@@ -6,7 +6,7 @@
 <div class="container mb-5">
   <h1>Editando: {{$products->name}}</h1>
 
-  <form action="/produtos/update/{{$products->id}}" method="post">
+  <form action="/produtos/update/{{$products->id}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="mb-3">
@@ -27,10 +27,10 @@
     </div>
     <div class="mb-3">
       <label for="photo" class="form-label">Foto</label><br>
-      <input type="text" name="photo" class="form-control" value="{{$products->photo}}" id="photo" placeholder=" foto do produto">
+      <input type="file" name="photo" class="form-control" value="{{asset('storage/'.$products->photo)}}" id="photo" placeholder=" foto do produto">
     </div>
     <div>
-      <img src="{{$products->photo}}" alt="imagem produto" style="width: 50px;">
+      <img src="{{asset('storage/'.$products->photo)}}" alt="imagem produto" style="width: 50px;">
     </div>
     <div class="mb-3">
       <label for="" class="form-label">Categoria</label>

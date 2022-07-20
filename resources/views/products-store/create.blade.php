@@ -16,7 +16,7 @@
   </div>
 
 
-  <form action="/bdproduto" method="Post">
+  <form action="/bdproduto" method="Post" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
       <label for="name" class="form-label">Nome</label><br>
@@ -36,7 +36,7 @@
     </div>
     <div class="mb-3">
       <label for="photo" class="form-label">Foto</label><br>
-      <input type="text" class="form-control" name="photo" id="photo" placeholder=" foto do produto">
+      <input type="file" class="form-control" name="photo" id="photo" placeholder=" foto do produto">
     </div>
     <div class="mb-3">
       <label for="" class="form-label">Categoria</label>

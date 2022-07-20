@@ -61,7 +61,7 @@
               <td>
 
                 <div class="d-flex" style="margin-top:25px ;">
-                  <img src="{{$order_item->product->photo}}" alt="" style="width:100px; height: 100%;">
+                  <img src="{{asset('storage/'.$order_item->product->photo)}}" alt="" style="width:100px; height: 100%;">
                   <div>
                     <h6>{{$order_item->product->name}}</h6>
                     <h5>R$ {{number_format($order_item->product->price,2,',','.')}}</h5>

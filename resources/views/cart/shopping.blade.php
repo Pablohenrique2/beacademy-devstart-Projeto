@@ -69,7 +69,7 @@
                 @endif
               </td>
               <td>
-                <img width="100" height="100" src="{{ $order_product->product->photo}}">
+                <img width="100" height="100" src="{{asset('storage/'.$order_product->product->photo)}}">
               </td>
               <td>{{ $order_product->product->name}}</td>
               <td>R$ {{ number_format($order_product->value, 2, ',', '.') }}</td>
@@ -136,7 +136,7 @@
               @endphp
               <tr>
                 <td>
-                  <img width="100" height="100" src="{{ $order_product->product->photo }}">
+                  <img width="100" height="100" src="{{asset('storage/'.$order_product->product->photo)}}">
                 </td>
                 <td>{{ $order_product->product->name}}</td>
                 <td>R$ {{ number_format($order_product->value, 2, ',', '.') }}</td>

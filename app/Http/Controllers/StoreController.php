@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Request as ModelsRequest;
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use function GuzzleHttp\Promise\all;
 
 class StoreController extends Controller
 {
+    public function __construct(Product $product)
+    {
+        $this->model = $product;
+    }
     public function index()
     {
         $products = Product::limit(8)->get();
@@ -78,19 +82,16 @@ class StoreController extends Controller
     public function store(Request $request)
     {
 
-        $products = new Product();
-        $products->name = $request->name;
-        $products->description = $request->description;
-        $products->price = $request->price;
-        $products->photo = $request->photo;
-        $products->sizes = $request->sizes;
-        $products->mark = $request->mark;
-        $products->colors = $request->colors;
-        $products->cost_price = $request->cost_price;
-        $products->category_id = $request->category_id;
-        $products->quantity = $request->quantity;
+        $data = $request->all();
 
-        $products->save();
+        if ($request->photo) {
+            $file = $request['photo'];
+            $path = $file->store('profile', 'public');
+            $data['photo'] = $path;
+        }
+
+        $this->model->create($data);
+
         return redirect('/produtos/list')->with('productcad', 'Produto cadastrado com sucesso!');
     }
     public function list(Request $request)
@@ -124,9 +125,24 @@ class StoreController extends Controller
         $products = Product::findOrfail($id);
         return view('products-store.show', ['products' => $products], compact('order'));
     }
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        Product::findOrfail($request->id)->update($request->all());
+        $data = $request->all();
+        if (!$product = $this->model->find($id))
+            return redirect()->route('products.index');
+
+
+
+
+        if ($request->photo) {
+            if ($product->photo && Storage::exists($product->photo)) {
+                Storage::delete($product->photo);
+            }
+
+            $data['photo'] = $request->photo->store('profile', 'public');
+        }
+
+        $product->update($data);
         return redirect('/produtos/list')->with('productedit', 'Produto editado com sucesso!');
     }
 
