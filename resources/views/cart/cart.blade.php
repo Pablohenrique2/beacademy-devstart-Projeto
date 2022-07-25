@@ -53,7 +53,7 @@
           </thead>
           <tbody>
             @php
-            $total_pedido = 0
+            $total_pedido = 0 ;
             @endphp
             @foreach($orders->order_items as $order_item)
             <tr>
@@ -105,7 +105,7 @@
 
               @php
               $total_product=$order_item->valores;
-              $total_pedido +=$total_product
+              $total_pedido +=$total_product ;
               @endphp
               <td>
                 <h5 style="font-weight: 700px; font-size:18px;">R$ {{number_format($total_product,2,',','.')}} </h5>
@@ -136,6 +136,7 @@
       <div class="row section-cart">
         <h6>Total do carrinho:</h6>
         <h5>R$ {{number_format($total_pedido,2,',','.')}}</h5>
+        <h1></h1>
         <form action="{{route('concludeCart')}}" method="post">
           {{ csrf_field() }}
           <input type="hidden" name="request_id" value="{{$orders->id}}">
@@ -143,6 +144,69 @@
             Concluir a compra
           </button>
         </form>
+<form id="formDestino" action="">
+
+  
+        <p>
+            
+            <input name="sCepOrigem" value="41385880" type="hidden">
+        </p>
+
+        <p>
+            <label for="" class="form-label">Digite seu cep</label>
+            <input name="sCepDestino"class="form-control"  type="text">
+        </p>
+
+        <p>
+          
+            <input name="nVlPeso" value="1" type="hidden">
+        </p>
+
+        <p>
+            
+            <input name="nVlComprimento" value="16" type="hidden">
+        </p>
+
+        <p>
+            
+            <input name="nVlAltura" value="16" type="hidden">
+        </p>
+
+        <p>
+            
+            <input name="nVlLargura" value="16" type="hidden">
+        </p>
+
+        <p>
+            <label for="">Serviço</label>
+            <select name="nCdServico" id="">
+                <option value="04014">Sedex</option>
+                <option value="04510">PAC</option>
+            </select>
+        </p>
+
+        <p><button type="button" id="calcular">Calcular</button></p>
+
+    </form>
+ 
+    <p id="resultado"></p>
+    @section('scripts')
+    <script>
+        $('#calcular').click(function() {
+            let formSerialized = $('#formDestino').serialize();
+            $.post('calcular.php', formSerialized, function(resultado) {
+                resultado = JSON.parse(resultado);
+                let valorFrete = resultado.preco  ;
+                let prazoEntrega = resultado.prazo;
+                $('#resultado').html(`O valor do frete é <b>R$ ${valorFrete} </b> e o prazo de entrega é <b>${prazoEntrega} dias úteis</b>.`);
+            });
+        });
+    </script>
+    @endsection
+    
+        
+       
+
       </div>
     </div>
     <hr>
@@ -161,6 +225,6 @@
   </div>
 </div>
 
-
+ 
 
 @endsection
