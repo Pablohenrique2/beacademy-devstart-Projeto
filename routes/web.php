@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,3 +41,7 @@ Route::prefix('carrinho')->group(
 );
 Route::post('/bdproduto', [StoreController::class, 'store'])->name('bdproduto');
 Route::match(['get', 'post'], '/contato', [StoreController::class, 'contact'])->name('index.contact');
+
+Route::post('pay', [PaymentController::class, 'pay'])->name('payment');
+Route::match(['get','post'],'success', [PaymentController::class, 'success'])->name('success');
+Route::get('error', [PaymentController::class, 'error']);

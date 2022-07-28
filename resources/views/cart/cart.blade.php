@@ -139,11 +139,20 @@
         <h1></h1>
         <form action="{{route('concludeCart')}}" method="post">
           {{ csrf_field() }}
-          <input type="hidden" name="request_id" value="{{$orders->id}}">
-          <button type="submit">
-            Concluir a compra
-          </button>
+          
+          <input type="hidden" name="valor" value="{{$total_pedido}}">
+          
+          
         </form>
+        <form action="{{route('payment')}}" method="post">
+            @csrf
+            <input type="hidden" name="amount" value="{{$total_pedido}}">
+            <input type="hidden" name="request_id" value="{{$orders->id}}">
+            <button type="submit">Concluir a compra</button>
+
+
+          </form>
+        
 <form id="formDestino" action="">
 
   
@@ -225,6 +234,6 @@
   </div>
 </div>
 
- 
+         
 
 @endsection
