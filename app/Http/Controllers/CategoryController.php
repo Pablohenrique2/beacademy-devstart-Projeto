@@ -23,7 +23,7 @@ class CategoryController extends Controller
     $category = new Category();
     $category->categories = $request->categories;
     $category->save();
-    return redirect()->route('category.index');
+    return redirect()->route('category.index')->with('categoriacad', 'Produto cadastrado com sucesso!');
   }
 
   public function destroy($id)
@@ -33,7 +33,7 @@ class CategoryController extends Controller
       return redirect()->route('category.index');
     }
     $Category->delete();
-    return redirect()->route('category.index');
+    return redirect()->route('category.index')->with('categoriadel', 'Produto deletado com sucesso!');
   }
 
   public function edit($id)
@@ -49,6 +49,6 @@ class CategoryController extends Controller
   public function update(Request $request)
   {
     Category::findOrfail($request->id)->update($request->all());
-    return redirect()->route('category.index');
+    return redirect()->route('category.index')->with('categoriaedit', 'Produto editado com sucesso!');
   }
 }

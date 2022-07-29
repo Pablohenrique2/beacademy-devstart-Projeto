@@ -73,7 +73,10 @@
                           <td>
 
                             <div><img src="{{asset('storage/'.$order_item->product->photo)}}" alt="" style="width: 50px;">{{$order_item->product->name}}</div>
-                            <h5>QTD:{{$order_item->qtd}}</h5>R${{number_format($order_item->product->price, 2, ',', '.' )}}
+                            <div class="d-flex mt-3" style="margin-bottom: -20px;">
+                            <h5 class="mt-2">QTD:{{$order_item->qtd}}</h5><p style="margin-left: 30px;">R${{number_format($order_item->product->price, 2, ',', '.' )}} </p>
+                            </div>
+                            <hr>
                           </td>
 
                           <td></td>

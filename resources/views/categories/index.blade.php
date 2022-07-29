@@ -27,6 +27,26 @@
 
 <div class="container">
   <h1>Lista de categorias</h1>
+  @if(session()->has('categoriacad'))
+
+
+<div class="alert alert-success">
+  <strong>{{session()->get('categoriacad')}}</strong>
+
+</div>
+@endif
+@if(session()->has('categoriadel'))
+<div class="alert alert-danger">
+  <strong>{{session()->get('categoriadel')}}</strong>
+
+</div>
+@endif
+@if(session()->has('categoriaedit'))
+<div class="alert alert-success">
+  <strong>{{session()->get('categoriaedit')}}</strong>
+
+</div>
+@endif
   
   <table class="table">
     <thead>

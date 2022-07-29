@@ -29,26 +29,30 @@
   <div class="row">
 
 
-    <div></div>
-    <div>
-      <h4>Compras concluídas</h4>
+    <div class="text-center">
+      <h1>Historico</h1>
+    </div>
+    <h4>Compras concluídas</h4>
+    <div  style="background-color:#f3f2ee ; border-radius:5px; border:2px solid black;">
+      
       @forelse ($shoppin as $order)
       <h5> Pedido: {{ $order->id }} </h5>
       <h5> Criado em: {{ $order->created_at->format('d/m/Y H:i') }} </h5>
-      <form method="POST" action="{{ route('cancelCart') }}">
+      <form method="POST" action="{{ route('cancelCart') }}" style="width: 600px ;">
         {{ csrf_field() }}
         <input type="hidden" name="request_id" value="{{ $order->id }}">
-        <table>
-          <thead>
+        <table  class="mt-4 ">
+          
+          <thead >
             <tr>
               <th colspan="2"></th>
               <th>Produto</th>
               <th>Valor</th>
-              <th>Desconto</th>
               <th>Total</th>
             </tr>
           </thead>
-          <tbody>
+          
+          <tbody >
             @php
             $total_order = 0;
             @endphp
@@ -68,31 +72,34 @@
                 <strong>CANCELADO</strong>
                 @endif
               </td>
-              <td>
-                <img width="100" height="100" src="{{asset('storage/'.$order_product->product->photo)}}">
+              <td  style="width:200px ;" >
+                <img class="mt-4" width="100" height="100" src="{{asset('storage/'.$order_product->product->photo)}}">
               </td>
-              <td>{{ $order_product->product->name}}</td>
+              <td style="width:100px ; ">{{ $order_product->product->name}}</td>
               <td>R$ {{ number_format($order_product->value, 2, ',', '.') }}</td>
 
               <td>R$ {{ number_format($total_product, 2, ',', '.') }}</td>
             </tr>
             @endforeach
           </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="3"></td>
-              <td><strong>Total do pedido</strong></td>
-              <td>R$ {{ number_format($total_order, 2, ',', '.') }}</td>
-            </tr>
-            <tr>
+        
+          <tfoot  >
+            <tr >
               <td colspan="2">
-                <button type="submit">
+                <button type="submit" class="btn btn-dark mt-2 mb-2">
                   Cancelar
                 </button>
+                <hr>
               </td>
               <td colspan="3"></td>
+              <td><strong>Total do pedido</strong><br> R$ {{ number_format($total_order, 2, ',', '.') }}<hr></td>
+              <td></td> 
+              
             </tr>
+            
+           
           </tfoot>
+        
         </table>
       </form>
       @empty
@@ -109,14 +116,14 @@
       <div class="divider"></div>
       <h4>Compras canceladas</h4>
       @forelse ($canceled as $order)
-      <div style="margin-top:20px ;">
+      <div style="margin-top:20px ;" class="mt-4">
         <div>
           <h5 class="col l2 s12 m2"> Pedido: {{ $order->id }} </h5>
           <h5 class="col l5 s12 m5"> Criado em: {{ $order->created_at->format('d/m/Y H:i') }} </h5>
           <h5 class="col l5 s12 m5"> Cancelado em: {{ $order->updated_at->format('d/m/Y H:i') }} </h5>
         </div>
-        <div class="shopping-cart">
-          <table>
+        <div class="shopping-cart" style="border:2px solid black;">
+          <table  class="mt-4">
             <thead>
               <tr>
                 <th></th>
@@ -136,7 +143,7 @@
               @endphp
               <tr>
                 <td>
-                  <img width="100" height="100" src="{{asset('storage/'.$order_product->product->photo)}}">
+                  <img style="margin-left:10px ; margin-top:10px ;" width="100" height="100" src="{{asset('storage/'.$order_product->product->photo)}}">
                 </td>
                 <td>{{ $order_product->product->name}}</td>
                 <td>R$ {{ number_format($order_product->value, 2, ',', '.') }}</td>

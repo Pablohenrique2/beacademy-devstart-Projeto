@@ -39,9 +39,10 @@ Route::prefix('carrinho')->group(
         Route::match(['get', 'post'], '/cancelar', [CartController::class, 'cancelCart'])->name('cancelCart');
     }
 );
+
+
 Route::post('/bdproduto', [StoreController::class, 'store'])->name('bdproduto');
 Route::match(['get', 'post'], '/contato', [StoreController::class, 'contact'])->name('index.contact');
-
 Route::post('pay', [PaymentController::class, 'pay'])->name('payment');
 Route::match(['get','post'],'success', [PaymentController::class, 'success'])->name('success');
 Route::get('error', [PaymentController::class, 'error']);

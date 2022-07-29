@@ -32,6 +32,7 @@
       
     </div>
     
+    
   </div>
   <form action="{{route('category.store')}}" method="post">
     @csrf
